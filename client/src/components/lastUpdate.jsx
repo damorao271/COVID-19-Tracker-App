@@ -14,9 +14,13 @@ class LastUpdate extends Component {
       hour12: true,
     });
 
+    if (!date) {
+      return <h3>Loading ...</h3>;
+    }
+
     return (
       <div className="last-update-container">
-        <div>Last Update at (M/D/YYYY)</div>
+        <div>Last Update at (MM/DD/YYYY)</div>
         <p>
           {month}/{day}/{year}, {hora}
         </p>

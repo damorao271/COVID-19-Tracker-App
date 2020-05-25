@@ -5,6 +5,7 @@ import ListConfirmed from "./components/listConfirmed";
 import ListRecovered from "./components/listRecovered";
 import ListDeaths from "./components/listDeaths";
 import LastUpdate from "./components/lastUpdate";
+import Chart from "./components/chart";
 
 class App extends React.Component {
   state = {
@@ -26,7 +27,14 @@ class App extends React.Component {
 
   handleCountry = (country) => {
     this.setState({ global: country });
-    console.log(this.state.currentDate);
+  };
+
+  stringOfColors = (country) => {
+    var colors = [];
+    for (let i = 0; i < country.length; i++) {
+      colors[i] = "#" + Math.floor(Math.random() * 16777215).toString(16);
+    }
+    return colors;
   };
 
   render() {
@@ -63,8 +71,11 @@ class App extends React.Component {
             <LastUpdate date={currentDate} />
           </div>
           <div className="element col-6">
+            <Chart countries={countries} />
             **** Datos dia a dia de cada pais ****
-            https://api.covid19api.com/dayone/country/south-africa
+            https://api.covid19api.com/dayone/country/south-africa ****
+            https://api.covid19api.com/dayone/country/south-africa/status/confirmed
+            ****** https://coronavirus.jhu.edu/map.html
           </div>
           <div className="element col-4">
             <div className="row">

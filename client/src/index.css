@@ -1,0 +1,159 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: content-box;
+}
+.col-6 {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.element {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px !important;
+}
+
+.row {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+/* Card Confimed*/
+.Confimed {
+  border: 1px solid black;
+}
+.Confimed h3 {
+  text-align: center;
+  font-size: 20px;
+}
+.Confimed h2 {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: 38px;
+}
+.Confimed h5 {
+  text-align: center;
+}
+
+/* Card Recovered*/
+.Recovered {
+  border: 1px solid black;
+}
+.Recovered h3 {
+  text-align: center;
+  font-size: 20px;
+}
+.Recovered h2 {
+  text-align: center;
+  color: yellowgreen;
+  font-weight: bold;
+  font-size: 38px;
+}
+
+.Recovered h5 {
+  text-align: center;
+}
+
+/* Card Deaths*/
+.Deaths {
+  border: 1px solid black;
+}
+.Deaths h3 {
+  text-align: center;
+  font-size: 20px;
+}
+.Deaths h2 {
+  text-align: center;
+  color: gray;
+  font-weight: bold;
+  font-size: 38px;
+}
+.Deaths h5 {
+  text-align: center;
+}
+
+/* Confirmed List */
+.Confimed-list li {
+  border: 1px solid black;
+  padding: 5px;
+  list-style: none;
+}
+
+.Confimed-list li:hover {
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.Confimed-list p {
+  margin: 0px;
+}
+.confirmed-count {
+  color: red;
+  font-weight: bold;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* Recovered List */
+.Recovered-list li {
+  border: 1px solid black;
+  padding: 5px;
+  list-style: none;
+}
+
+.Recovered-list li:hover {
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.Recovered-list p {
+  margin: 0px;
+}
+.recovered-count {
+  color: yellowgreen;
+  font-weight: bold;
+}
+
+/* Deaths List */
+.Deaths-list li {
+  border: 1px solid black;
+  padding: 5px;
+  list-style: none;
+}
+
+.Deaths-list li:hover {
+  border: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.Deaths-list p {
+  margin: 0px;
+}
+.deaths-count {
+  color: gray;
+  font-weight: bold;
+}

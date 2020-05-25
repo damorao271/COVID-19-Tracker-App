@@ -14,14 +14,12 @@ class ListRecovered extends Component {
       (o) => o.TotalRecovered,
       -1
     ).reverse();
-    console.log("Countries", countries);
-    console.log("Ordered Countries", orderedCountries);
 
     return (
       <div className={type}>
         <ol>
           {orderedCountries.map((c) => (
-            <li>
+            <li key={c.Country}>
               <p onClick={() => handleCountry(c)}>
                 <CountUp
                   className="recovered-count"

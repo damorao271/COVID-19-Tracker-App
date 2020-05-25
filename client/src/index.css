@@ -75,6 +75,28 @@
 }
 
 /* Confirmed List */
+
+.Confimed-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 500px;
+  border: 1px solid black;
+}
+
+::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+  background: #404040;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #808080;
+}
+
+::-webkit-scrollbar-corner {
+  background: #404040;
+}
+
 .Confimed-list li {
   border: 1px solid black;
   padding: 5px;
@@ -95,38 +117,26 @@
   font-weight: bold;
 }
 
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-
 /* Recovered List */
+.Recovered-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 500px;
+}
+
 .Recovered-list li {
-  border: 1px solid black;
+  border: 1px solid rgb(236, 233, 233);
   padding: 5px;
   list-style: none;
+  transition: all 200ms;
 }
 
 .Recovered-list li:hover {
-  border: 1px solid black;
+  border: 1px solid yellowgreen;
   padding: 5px;
   cursor: pointer;
+  /* border-radius: 5px; */
+  box-shadow: 0px 0px 2px gray inset;
 }
 
 .Recovered-list p {
@@ -138,6 +148,12 @@
 }
 
 /* Deaths List */
+.Deaths-list {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 500px;
+}
+
 .Deaths-list li {
   border: 1px solid black;
   padding: 5px;
@@ -156,4 +172,16 @@
 .deaths-count {
   color: gray;
   font-weight: bold;
+}
+
+.last-update-container {
+  padding: 5px;
+}
+
+.last-update-container div {
+  font-size: 12px;
+  text-align: center;
+}
+.last-update-container p {
+  text-align: center;
 }

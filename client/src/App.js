@@ -4,6 +4,7 @@ import { getSummaryData } from "./services/getdata";
 import ListConfirmed from "./components/listConfirmed";
 import ListRecovered from "./components/listRecovered";
 import ListDeaths from "./components/listDeaths";
+import LastUpdate from "./components/lastUpdate";
 
 class App extends React.Component {
   state = {
@@ -25,6 +26,7 @@ class App extends React.Component {
 
   handleCountry = (country) => {
     this.setState({ global: country });
+    console.log(this.state.currentDate);
   };
 
   render() {
@@ -39,6 +41,7 @@ class App extends React.Component {
         TotalRecovered,
       },
       countries,
+      currentDate,
     } = this.state;
     const { handleCountry } = this;
     return (
@@ -57,8 +60,12 @@ class App extends React.Component {
               handleCountry={handleCountry}
               countries={countries}
             />
+            <LastUpdate date={currentDate} />
           </div>
-          <div className="element col-6">Hola</div>
+          <div className="element col-6">
+            **** Datos dia a dia de cada pais ****
+            https://api.covid19api.com/dayone/country/south-africa
+          </div>
           <div className="element col-4">
             <div className="row">
               <div className="col-6">

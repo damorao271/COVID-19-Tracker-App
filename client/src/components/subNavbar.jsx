@@ -6,12 +6,12 @@ class SubNavbar extends Component {
     return (
       <div className="sub-navbar-cont">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <NavLink to="/totalconfirmed">Total Confirmed</NavLink>
-          <NavLink to="/totalrecovered">Total Recovered</NavLink>
-          <NavLink to="/totaldeaths">Total Deaths</NavLink>
-          <NavLink to="/newconfirmed">New Confirmed</NavLink>
-          <NavLink to="/newrecovered">New Recovered</NavLink>
-          <NavLink to="/newdeaths">New Deaths</NavLink>
+          <NavLink to="/dataanalysis/totalconfirmed">Total Confirmed</NavLink>
+          <NavLink to="/dataanalysis/totalrecovered">Total Recovered</NavLink>
+          <NavLink to="/dataanalysis/totaldeaths">Total Deaths</NavLink>
+          <NavLink to="/dataanalysis/newconfirmed">New Confirmed</NavLink>
+          <NavLink to="/dataanalysis/newrecovered">New Recovered</NavLink>
+          <NavLink to="/dataanalysis/newdeaths">New Deaths</NavLink>
         </nav>
       </div>
     );

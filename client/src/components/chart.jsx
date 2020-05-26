@@ -44,7 +44,7 @@ class Chart extends Component {
         <SubNavbar />
         <Switch>
           <Route
-            path="/totalconfirmed"
+            path="/dataanalysis/totalconfirmed"
             render={(props) => (
               <PieChart
                 title="Global Confirmed Cases"
@@ -55,7 +55,7 @@ class Chart extends Component {
             )}
           />
           <Route
-            path="/totalrecovered"
+            path="/dataanalysis/totalrecovered"
             render={(props) => (
               <PieChart
                 title="Global Recovered Cases"
@@ -66,7 +66,7 @@ class Chart extends Component {
             )}
           />
           <Route
-            path="/totaldeaths"
+            path="/dataanalysis/totaldeaths"
             render={(props) => (
               <PieChart
                 title="Global Death Cases"
@@ -77,7 +77,7 @@ class Chart extends Component {
             )}
           />
           <Route
-            path="/newconfirmed"
+            path="/dataanalysis/newconfirmed"
             render={(props) => (
               <PieChart
                 title="Global New Confirmed Cases"
@@ -88,7 +88,7 @@ class Chart extends Component {
             )}
           />
           <Route
-            path="/newrecovered"
+            path="/dataanalysis/newrecovered"
             render={(props) => (
               <PieChart
                 title="Global New Recovered Cases"
@@ -99,7 +99,7 @@ class Chart extends Component {
             )}
           />
           <Route
-            path="/newdeaths"
+            path="/dataanalysis/newdeaths"
             render={(props) => (
               <PieChart
                 title="Global New Death Cases"

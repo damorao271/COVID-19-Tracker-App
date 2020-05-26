@@ -1,31 +1,43 @@
 import React, { Component } from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-maps";
-
-function Map() {
-  return (
-    <GoogleMap defaultZoom={10} defaultCenter={{ lat: 6.42, lng: -66.59 }} />
-  );
-}
-
-const WrappedMap = withScriptjs(withGoogleMap(Map));
+import MarkerClusterGroup from "react-leaflet-markercluster";
+import {
+  Map,
+  Marker,
+  Popup,
+  TileLayer,
+  CircleMarker,
+  Circle,
+} from "react-leaflet";
+import { Icon } from "leaflet";
 
 class WorldMap extends Component {
-  state = {};
+  // state = {};
   render() {
     return (
-      <div
-        style={{ width: "100vw", height: "100vh" }}
-        className="google-map-container"
-      >
-        <h3>Google Map</h3>
-        {/* <WrappedMap
-          loadingElement={<div style={{ height: "100%" }}></div>}
-          containerElement={<div style={{ height: "100%" }}></div>}
-          mapElement={<div style={{ height: "100%" }}></div>}
-          googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-          }
-        /> */}
+      <div className="worlmap-container">
+        <Map center={[10, 0]} zoom={1.5}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          />
+
+          <CircleMarker
+            center={[6.427, -66.59]}
+            color="red"
+            fillColor="red"
+            opacity={0.1}
+            fillOpacity={0.5}
+            radius={80}
+          >
+            <span>2</span>
+          </CircleMarker>
+
+          <MarkerClusterGroup showCoverageOnHover={false}>
+            <CircleMarker center={[49.8397, 24.0297]} color="red" radius={50} />
+            <CircleMarker center={[52.2297, 21.0122]} color="red" />
+            <CircleMarker center={[51.5074, -0.0901]} color="red" />
+          </MarkerClusterGroup>
+        </Map>
       </div>
     );
   }

@@ -6,13 +6,13 @@ class Header extends Component {
     return (
       <div className="header-container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <NavLink to="/totalconfirmed">Total Confirmed</NavLink>
-          <NavLink to="/totalrecovered">Total Recovered</NavLink>
-          <NavLink to="/totaldeaths">Total Deaths</NavLink>
-          <NavLink to="/newconfirmed">New Confirmed</NavLink>
-          <NavLink to="/newrecovered">New Recovered</NavLink>
-          <NavLink to="/newdeaths">New Deaths</NavLink>
-        </nav>{" "}
+          <h6>
+            <NavLink to="/home">Home{"  "}</NavLink>
+          </h6>
+          <h6>
+            <NavLink to="/dataanalysis">Data Analysis </NavLink>
+          </h6>
+        </nav>
       </div>
     );
   }

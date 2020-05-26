@@ -201,3 +201,11 @@
   text-align: center;
   width: 40px;
 }
+
+.pop-info {
+  color: orange;
+}
+
+.pop-info h6:hover {
+  cursor: pointer;
+}

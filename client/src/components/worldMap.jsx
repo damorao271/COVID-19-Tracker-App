@@ -7,11 +7,15 @@ import {
   TileLayer,
   CircleMarker,
   Circle,
+  Tooltip,
 } from "react-leaflet";
 import { Icon } from "leaflet";
 
 class WorldMap extends Component {
   // state = {};
+  handleMarker = () => {
+    console.log("Click");
+  };
   render() {
     return (
       <div className="worlmap-container">
@@ -29,14 +33,21 @@ class WorldMap extends Component {
             fillOpacity={0.5}
             radius={80}
           >
-            <span>2</span>
+            <Popup
+              className="pop-info"
+              direction="right"
+              offset={[-20, 20]}
+              opacity={1}
+            >
+              <h6 onClick={() => this.handleMarker()}>Casos</h6>
+            </Popup>
           </CircleMarker>
 
-          <MarkerClusterGroup showCoverageOnHover={false}>
+          {/* <MarkerClusterGroup showCoverageOnHover={false}>
             <CircleMarker center={[49.8397, 24.0297]} color="red" radius={50} />
             <CircleMarker center={[52.2297, 21.0122]} color="red" />
             <CircleMarker center={[51.5074, -0.0901]} color="red" />
-          </MarkerClusterGroup>
+          </MarkerClusterGroup> */}
         </Map>
       </div>
     );

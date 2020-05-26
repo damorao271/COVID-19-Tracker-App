@@ -1,5 +1,5 @@
 import React from "react";
-import { getSummaryData } from "./services/getdata";
+import { getSummaryData, getDailyData } from "./services/getdata";
 import WorldMap from "./components/worldMap";
 
 import Header from "./components/header";
@@ -12,6 +12,7 @@ class App extends React.Component {
     global: "",
     countries: "",
     colors: "",
+    superData: "",
   };
 
   // Obtiene los datos del server
@@ -22,11 +23,13 @@ class App extends React.Component {
       Date: date,
     } = await getSummaryData();
 
+    let superData = getDailyData();
+
     global.Country = "Global";
 
     let colors = this.stringOfColors(countries);
 
-    this.setState({ global, countries, currentDate: date, colors });
+    this.setState({ global, countries, currentDate: date, colors, superData });
   }
   // Crea un array de colores para la grafica de pastel
   stringOfColors = (country) => {
@@ -57,7 +60,9 @@ class App extends React.Component {
       countries,
       currentDate,
     } = this.state;
-    const { handleCountry } = this;
+
+    console.log("Super data: ", this.state.superData);
+
     return (
       <div className="App">
         <Header />
@@ -66,7 +71,9 @@ class App extends React.Component {
           <Route path="/home" render={(props) => <WorldMap />} />
           <Route
             path="/dataanalysis"
-            render={(props) => <Info props={this.state} />}
+            render={(props) => (
+              <Info props={this.state} handleCountry={this.handleCountry} />
+            )}
           />
         </Switch>
       </div>

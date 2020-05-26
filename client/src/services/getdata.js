@@ -11,3 +11,15 @@ export const getSummaryData = async () => {
     return error;
   }
 };
+
+export const getDailyData = async () => {
+  let urlSummary = url + "/all";
+  try {
+    const { data } = await axios.get(urlSummary);
+    // console.log("Data: ", data);
+    // const { Country, Confirmed } = data;
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

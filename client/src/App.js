@@ -7,6 +7,9 @@ import ListDeaths from "./components/listDeaths";
 import LastUpdate from "./components/lastUpdate";
 import Chart from "./components/chart";
 import Header from "./components/header";
+import WorldMap from "./components/worldMap";
+import Info from "./components/info";
+import { Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   state = {
@@ -63,6 +66,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
+        <Info />
         <div className="row">
           <div className="element col-2">
             <Card
@@ -80,6 +84,7 @@ class App extends React.Component {
           </div>
           <div className="element col-6">
             <Chart colors={colors} countries={countries} />
+            <WorldMap />
             **** Datos dia a dia de cada pais ****
             https://api.covid19api.com/dayone/country/south-africa ****
             https://api.covid19api.com/dayone/country/south-africa/status/confirmed

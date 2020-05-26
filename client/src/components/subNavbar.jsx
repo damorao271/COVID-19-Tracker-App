@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
-class Header extends Component {
+class SubNavbar extends Component {
   render() {
     return (
-      <div className="header-container">
+      <div className="sub-navbar-cont">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <NavLink to="/totalconfirmed">Total Confirmed</NavLink>
           <NavLink to="/totalrecovered">Total Recovered</NavLink>
@@ -12,10 +12,10 @@ class Header extends Component {
           <NavLink to="/newconfirmed">New Confirmed</NavLink>
           <NavLink to="/newrecovered">New Recovered</NavLink>
           <NavLink to="/newdeaths">New Deaths</NavLink>
-        </nav>{" "}
+        </nav>
       </div>
     );
   }
 }
 
-export default Header;
+export default SubNavbar;

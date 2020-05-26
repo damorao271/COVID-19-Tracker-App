@@ -1,53 +1,16 @@
 import React, { Component } from "react";
-import { Pie } from "react-chartjs-2";
-import PieChart from "./pieChart";
+import PieChart from "./common/pieChart";
+import SubNavbar from "./subNavbar";
+import { Route, Switch, NavLink, BrowserRouter } from "react-router-dom";
 import _ from "lodash";
 
 class Chart extends Component {
-  state = {
-    labels: ["January", "February", "March", "April", "May"],
-    datasets: [
-      {
-        label: "Rainfall",
-        backgroundColor: [
-          "#B21F00",
-          "#C9DE00",
-          "#2FDE00",
-          "#00A6B4",
-          "#6800B4",
-        ],
-        hoverBackgroundColor: [
-          "#501800",
-          "#4B5000",
-          "#175000",
-          "#003350",
-          "#35014F",
-        ],
-        data: [65, 59, 80, 81, 56],
-      },
-    ],
-  };
-
-  stringOfColors = () => {
-    const array = [{ pais: "1" }, { pais: "1" }, { pais: "1" }, { pais: "1" }];
-    var colors = [];
-    for (let i = 0; i < array.length; i++) {
-      colors[i] = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    }
-    return colors;
-  };
-
   // Funcion que recibe el objeto de data y retorna un objeto con los datos en arrays
   // y un arreglo de colores aleatorios
-  dataInArrays = (country) => {
-    var colors = [];
-    for (let i = 0; i < country.length; i++) {
-      colors[i] = "#" + Math.floor(Math.random() * 16777215).toString(16);
-    }
-
+  dataInArrays = (country, entryColors) => {
     let result = {
-      country: _.map(country, "Country"),
-      colors: colors,
+      countries: _.map(country, "Country"),
+      colors: entryColors,
       NewConfirmed: _.map(country, "NewConfirmed"),
       NewRecovered: _.map(country, "NewRecovered"),
       NewDeaths: _.map(country, "NewDeaths"),
@@ -55,34 +18,100 @@ class Chart extends Component {
       TotalRecovered: _.map(country, "TotalRecovered"),
       TotalDeaths: _.map(country, "TotalDeaths"),
     };
-    console.log("Resultado:", result);
+    // console.log("Resultado:", result);
     return result;
   };
 
   render() {
-    const dataArray = this.dataInArrays(this.props.countries);
+    const dataArray = this.dataInArrays(
+      this.props.countries,
+      this.props.colors
+    );
+
+    const {
+      countries,
+      colors,
+      NewConfirmed,
+      NewDeaths,
+      NewRecovered,
+      TotalConfirmed,
+      TotalDeaths,
+      TotalRecovered,
+    } = dataArray;
 
     return (
       <div className="chart">
-        <h2>Chart Component</h2>
-        <PieChart data={dataArray} />
-        <Pie
-          data={this.state}
-          options={{
-            title: {
-              display: true,
-              text: "Average Rainfall per month",
-              fontSize: 20,
-            },
-            legend: {
-              display: true,
-              position: "right",
-            },
-          }}
-        />
+        <SubNavbar />
+        <Switch>
+          <Route
+            path="/totalconfirmed"
+            render={(props) => (
+              <PieChart
+                title="Global Confirmed Cases"
+                colors={colors}
+                countries={countries}
+                data={TotalConfirmed}
+              />
+            )}
+          />
+          <Route
+            path="/totalrecovered"
+            render={(props) => (
+              <PieChart
+                title="Global Recovered Cases"
+                colors={colors}
+                countries={countries}
+                data={TotalRecovered}
+              />
+            )}
+          />
+          <Route
+            path="/totaldeaths"
+            render={(props) => (
+              <PieChart
+                title="Global Death Cases"
+                colors={colors}
+                countries={countries}
+                data={TotalDeaths}
+              />
+            )}
+          />
+          <Route
+            path="/newconfirmed"
+            render={(props) => (
+              <PieChart
+                title="Global New Confirmed Cases"
+                colors={colors}
+                countries={countries}
+                data={NewConfirmed}
+              />
+            )}
+          />
+          <Route
+            path="/newrecovered"
+            render={(props) => (
+              <PieChart
+                title="Global New Recovered Cases"
+                colors={colors}
+                countries={countries}
+                data={NewRecovered}
+              />
+            )}
+          />
+          <Route
+            path="/newdeaths"
+            render={(props) => (
+              <PieChart
+                title="Global New Death Cases"
+                colors={colors}
+                countries={countries}
+                data={NewDeaths}
+              />
+            )}
+          />
+        </Switch>
       </div>
     );
   }
 }
-
 export default Chart;

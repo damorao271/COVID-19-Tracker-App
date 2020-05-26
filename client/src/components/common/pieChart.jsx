@@ -3,33 +3,33 @@ import { Pie } from "react-chartjs-2";
 
 class PieChart extends Component {
   render() {
-    const {
-      data: { colors, country, NewConfirmed },
-    } = this.props;
+    const { title, colors, countries, data } = this.props;
 
-    const data = {
-      labels: country,
+    const dataReady = {
+      labels: countries,
       datasets: [
         {
           label: "Confirmed Cases",
           backgroundColor: colors,
-          data: NewConfirmed,
+          data: data,
         },
       ],
     };
 
+    if (!title) {
+      return <h2>Loading ...</h2>;
+    }
+
     return (
       <div className="pie-chart-container">
-        <p>Pie Chart</p>
-        {console.log("Props", this.props)}
-
+        <h3>{title}</h3>
         <Pie
-          data={data}
-          labels={country}
+          data={dataReady}
+          labels={countries}
           options={{
             title: {
-              display: true,
-              text: "Average Rainfall per month",
+              display: false,
+              text: "Title",
               fontSize: 20,
             },
             legend: {

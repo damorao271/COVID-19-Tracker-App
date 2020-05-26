@@ -6,14 +6,17 @@ import ListRecovered from "./components/listRecovered";
 import ListDeaths from "./components/listDeaths";
 import LastUpdate from "./components/lastUpdate";
 import Chart from "./components/chart";
+import Header from "./components/header";
 
 class App extends React.Component {
   state = {
     currentDate: "",
     global: "",
     countries: "",
+    colors: "",
   };
 
+  // Obtiene los datos del server
   async componentDidMount() {
     let {
       Global: global,
@@ -22,19 +25,23 @@ class App extends React.Component {
     } = await getSummaryData();
 
     global.Country = "Global";
-    this.setState({ global, countries, currentDate: date });
+
+    let colors = this.stringOfColors(countries);
+
+    this.setState({ global, countries, currentDate: date, colors });
   }
-
-  handleCountry = (country) => {
-    this.setState({ global: country });
-  };
-
+  // Crea un array de colores para la grafica de pastel
   stringOfColors = (country) => {
     var colors = [];
     for (let i = 0; i < country.length; i++) {
       colors[i] = "#" + Math.floor(Math.random() * 16777215).toString(16);
     }
     return colors;
+  };
+
+  // Maneja la seleccion de pais para mostrar datos en los Cards
+  handleCountry = (country) => {
+    this.setState({ global: country });
   };
 
   render() {
@@ -48,13 +55,14 @@ class App extends React.Component {
         TotalDeaths,
         TotalRecovered,
       },
+      colors,
       countries,
       currentDate,
     } = this.state;
     const { handleCountry } = this;
     return (
       <div className="App">
-        <h1>App</h1>
+        <Header />
         <div className="row">
           <div className="element col-2">
             <Card
@@ -71,7 +79,7 @@ class App extends React.Component {
             <LastUpdate date={currentDate} />
           </div>
           <div className="element col-6">
-            <Chart countries={countries} />
+            <Chart colors={colors} countries={countries} />
             **** Datos dia a dia de cada pais ****
             https://api.covid19api.com/dayone/country/south-africa ****
             https://api.covid19api.com/dayone/country/south-africa/status/confirmed

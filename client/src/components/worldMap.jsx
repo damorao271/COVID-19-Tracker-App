@@ -21,8 +21,6 @@ class WorldMap extends Component {
   // la longitudm latitud y nombre de cada pais
   mergeArrays = (countries, non_duplidated_data) => {
     let result = [];
-    console.log("Countries in function: ", countries);
-    console.log("Unique data in function: ", non_duplidated_data);
 
     for (let i = 0; i < countries.length; i++) {
       result[i] = {
@@ -61,11 +59,7 @@ class WorldMap extends Component {
     let finalResult = this.mergeArrays(countries, non_duplidated_data);
     console.log("Resultado Final: ", finalResult);
 
-    // Encontrar el promedio de la data
-    var mean = _.meanBy(finalResult, (f) => f.TotalConfirmed);
-    var mapeado = _.map(finalResult, "TotalConfirmed");
-    var minValue = _.minBy(mapeado);
-    var maxValue = _.maxBy(mapeado);
+    console.log("Min&Max", minValue, maxValue);
 
     // Filtrar la Super data para obtener la info de ahi
     var newMap = _.map(superData, "Date");
@@ -75,8 +69,16 @@ class WorldMap extends Component {
     // los paises tiene varias zonas
     var filtradoPorValor = _.filter(
       superData,
-      _.matchesProperty("Date", "2020-04-29T00:00:00Z")
+      _.matchesProperty("Date", "2020-05-26T00:00:00Z")
     );
+
+    // Encontrar el promedio de la data
+    var mean = _.meanBy(filtradoPorValor, (f) => f.Confirmed);
+    var mapeado = _.map(filtradoPorValor, "Confirmed");
+    console.log("Mapeando", mapeado);
+
+    var minValue = _.minBy(mapeado);
+    var maxValue = _.maxBy(mapeado);
 
     console.log("Current Date", this.props.currentDate);
 
@@ -92,27 +94,32 @@ class WorldMap extends Component {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          {finalResult.map((a) => (
+          {filtradoPorValor.map((a) => (
             <CircleMarker
-              key={a.Country}
+              key={a.Country + a.Province + a.Lat + a.Lon + a.City + a.CityCode}
               center={[a.Lat, a.Lon]}
               color="red"
               fillColor="red"
               opacity={0.1}
               fillOpacity={Math.min(
                 Math.max(
-                  (2 * (a.TotalConfirmed - minValue)) / (maxValue - minValue),
+                  (6 * (a.Confirmed - minValue)) / (maxValue - minValue),
                   0
                 ),
                 0.6
               )}
-              radius={Math.min(
-                Math.max(
-                  (200 * (a.TotalConfirmed - minValue)) / (maxValue - minValue),
-                  0
-                ),
-                40
-              )}
+              radius={
+                a.Confirmed === maxValue
+                  ? 0
+                  : Math.min(
+                      Math.max(
+                        (200 * (a.Confirmed - minValue)) /
+                          (maxValue - minValue),
+                        0
+                      ),
+                      40
+                    )
+              }
             >
               <Popup
                 className="pop-info"
@@ -121,10 +128,10 @@ class WorldMap extends Component {
                 opacity={0.2}
               >
                 <h6 onClick={() => this.handleMarker(a.Country)}>
-                  {a.Country}
+                  {a.Country} {a.Province} {a.City}
                 </h6>
                 <p>
-                  {a.TotalConfirmed} Lat:{a.Lat} Lon:{a.Lon}{" "}
+                  Confirmed Cases {a.Confirmed} Lat:{a.Lat} Lon:{a.Lon}{" "}
                 </p>
               </Popup>
             </CircleMarker>

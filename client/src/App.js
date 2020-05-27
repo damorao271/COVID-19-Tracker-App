@@ -1,6 +1,6 @@
 import React from "react";
 import { getSummaryData, getDailyData } from "./services/getdata";
-import WorldMap from "./components/worldMap";
+import WorldMapDisplay from "./components/worldMapDisplay";
 
 import Header from "./components/header";
 import Info from "./components/info";
@@ -13,6 +13,7 @@ class App extends React.Component {
     countries: "",
     colors: "",
     superData: "",
+    counter: 0,
   };
 
   // Obtiene los datos del server
@@ -32,6 +33,15 @@ class App extends React.Component {
     this.setState({ superData });
   }
 
+  increaseCounter = (counter) => {
+    counter = counter + 10;
+    this.setState({ counter });
+  };
+  decreaseCounter = (counter) => {
+    counter < 0 ? (counter = 0) : (counter = counter - 10);
+    this.setState({ counter });
+  };
+
   // Crea un array de colores para la grafica de pastel
   stringOfColors = (country) => {
     var colors = [];
@@ -47,8 +57,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { superData, countries, currentDate } = this.state;
-    const { Country, Deaths } = superData;
+    const { superData, currentDate, counter } = this.state;
 
     console.log("superData: ", this.state.superData);
 
@@ -60,10 +69,11 @@ class App extends React.Component {
           <Route
             path="/home"
             render={(props) => (
-              <WorldMap
-                currentDate={currentDate}
+              <WorldMapDisplay
+                decreaseCounter={this.decreaseCounter}
+                increaseCounter={this.increaseCounter}
+                counter={counter}
                 superData={superData}
-                countries={countries}
               />
             )}
           />

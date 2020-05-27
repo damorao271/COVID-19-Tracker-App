@@ -66,10 +66,24 @@ class WorldMap extends Component {
     var mapeado = _.map(finalResult, "TotalConfirmed");
     var minValue = _.minBy(mapeado);
     var maxValue = _.maxBy(mapeado);
-    console.log("Mapeado", mapeado);
-    console.log("Minimo", minValue);
-    console.log("Maximo", maxValue);
-    console.log("Promedio", mean);
+
+    // Filtrar la Super data para obtener la info de ahi
+    var newMap = _.map(superData, "Date");
+    var newFilter = _.uniqBy(superData, "Country");
+
+    // Filtra los valores por dia pero se repiten porque
+    // los paises tiene varias zonas
+    var filtradoPorValor = _.filter(
+      superData,
+      _.matchesProperty("Date", "2020-04-29T00:00:00Z")
+    );
+
+    console.log("Current Date", this.props.currentDate);
+
+    console.log("Nuevo Mapeo", newMap);
+    console.log("Mapeo buscando valores unicos", _.uniq(superData, "Date"));
+    console.log("Nuevo filtrado", newFilter);
+    console.log("Filtrado solo valores de hoy", filtradoPorValor);
 
     return (
       <div className="worlmap-container">
@@ -87,29 +101,31 @@ class WorldMap extends Component {
               opacity={0.1}
               fillOpacity={Math.min(
                 Math.max(
-                  (a.TotalConfirmed - minValue) / (maxValue - minValue),
+                  (2 * (a.TotalConfirmed - minValue)) / (maxValue - minValue),
                   0
                 ),
-                0.5
+                0.6
               )}
               radius={Math.min(
                 Math.max(
-                  40*(a.TotalConfirmed - minValue) / (maxValue - minValue),
+                  (200 * (a.TotalConfirmed - minValue)) / (maxValue - minValue),
                   0
                 ),
-                0.5
-              )}}
+                40
+              )}
             >
               <Popup
                 className="pop-info"
                 direction="right"
                 offset={[0, 0]}
-                opacity={0.5}
+                opacity={0.2}
               >
                 <h6 onClick={() => this.handleMarker(a.Country)}>
                   {a.Country}
                 </h6>
-                <p>{a.TotalConfirmed} Lat:{a.Lat} Lon:{a.Lon} </p>
+                <p>
+                  {a.TotalConfirmed} Lat:{a.Lat} Lon:{a.Lon}{" "}
+                </p>
               </Popup>
             </CircleMarker>
           ))}

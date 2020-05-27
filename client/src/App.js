@@ -47,7 +47,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { superData, countries } = this.state;
+    const { superData, countries, currentDate } = this.state;
     const { Country, Deaths } = superData;
 
     console.log("superData: ", this.state.superData);
@@ -60,7 +60,11 @@ class App extends React.Component {
           <Route
             path="/home"
             render={(props) => (
-              <WorldMap superData={superData} countries={countries} />
+              <WorldMap
+                currentDate={currentDate}
+                superData={superData}
+                countries={countries}
+              />
             )}
           />
           <Route

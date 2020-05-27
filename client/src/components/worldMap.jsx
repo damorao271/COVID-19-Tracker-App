@@ -61,6 +61,16 @@ class WorldMap extends Component {
     let finalResult = this.mergeArrays(countries, non_duplidated_data);
     console.log("Resultado Final: ", finalResult);
 
+    // Encontrar el promedio de la data
+    var mean = _.meanBy(finalResult, (f) => f.TotalConfirmed);
+    var mapeado = _.map(finalResult, "TotalConfirmed");
+    var minValue = _.minBy(mapeado);
+    var maxValue = _.maxBy(mapeado);
+    console.log("Mapeado", mapeado);
+    console.log("Minimo", minValue);
+    console.log("Maximo", maxValue);
+    console.log("Promedio", mean);
+
     return (
       <div className="worlmap-container">
         <Map center={[10, 0]} zoom={1.5}>
@@ -75,8 +85,20 @@ class WorldMap extends Component {
               color="red"
               fillColor="red"
               opacity={0.1}
-              fillOpacity={Math.min(Math.max(0.0005 * a.TotalConfirmed, 0), 1)}
-              radius={Math.min(Math.max(0.00005 * a.TotalConfirmed, 0), 40)}
+              fillOpacity={Math.min(
+                Math.max(
+                  (a.TotalConfirmed - minValue) / (maxValue - minValue),
+                  0
+                ),
+                0.5
+              )}
+              radius={Math.min(
+                Math.max(
+                  40*(a.TotalConfirmed - minValue) / (maxValue - minValue),
+                  0
+                ),
+                0.5
+              )}}
             >
               <Popup
                 className="pop-info"
@@ -87,7 +109,7 @@ class WorldMap extends Component {
                 <h6 onClick={() => this.handleMarker(a.Country)}>
                   {a.Country}
                 </h6>
-                <p>{a.TotalConfirmed}</p>
+                <p>{a.TotalConfirmed} Lat:{a.Lat} Lon:{a.Lon} </p>
               </Popup>
             </CircleMarker>
           ))}

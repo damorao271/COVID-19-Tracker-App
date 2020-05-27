@@ -23,14 +23,15 @@ class App extends React.Component {
       Date: date,
     } = await getSummaryData();
 
-    let superData = getDailyData();
-
-    global.Country = "Global";
-
     let colors = this.stringOfColors(countries);
 
-    this.setState({ global, countries, currentDate: date, colors, superData });
+    global.Country = "Global";
+    this.setState({ global, countries, currentDate: date, colors });
+
+    let superData = await getDailyData();
+    this.setState({ superData });
   }
+
   // Crea un array de colores para la grafica de pastel
   stringOfColors = (country) => {
     var colors = [];
@@ -46,29 +47,22 @@ class App extends React.Component {
   };
 
   render() {
-    const {
-      global: {
-        Country,
-        NewConfirmed,
-        NewDeaths,
-        NewRecovered,
-        TotalConfirmed,
-        TotalDeaths,
-        TotalRecovered,
-      },
-      colors,
-      countries,
-      currentDate,
-    } = this.state;
+    const { superData, countries } = this.state;
+    const { Country, Deaths } = superData;
 
-    console.log("Super data: ", this.state.superData);
+    console.log("superData: ", this.state.superData);
 
     return (
       <div className="App">
         <Header />
 
         <Switch>
-          <Route path="/home" render={(props) => <WorldMap />} />
+          <Route
+            path="/home"
+            render={(props) => (
+              <WorldMap superData={superData} countries={countries} />
+            )}
+          />
           <Route
             path="/dataanalysis"
             render={(props) => (

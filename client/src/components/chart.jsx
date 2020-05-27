@@ -18,7 +18,6 @@ class Chart extends Component {
       TotalRecovered: _.map(country, "TotalRecovered"),
       TotalDeaths: _.map(country, "TotalDeaths"),
     };
-    // console.log("Resultado:", result);
     return result;
   };
 

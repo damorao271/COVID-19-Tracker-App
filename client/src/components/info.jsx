@@ -8,7 +8,6 @@ import Card from "./card";
 
 class Info extends Component {
   render() {
-    console.log("Props", this.props);
     const { props, handleCountry } = this.props;
     const {
       global: {
@@ -24,7 +23,8 @@ class Info extends Component {
       countries,
       currentDate,
     } = props;
-    // const { handleCountry } = this;
+
+    console.log("Props desde Info: ", this.props);
     return (
       <div className="info-container">
         <h3>Info</h3>

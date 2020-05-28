@@ -34,11 +34,11 @@ class App extends React.Component {
   }
 
   increaseCounter = (counter) => {
-    counter = counter + 10;
+    counter = counter + 5;
     this.setState({ counter });
   };
   decreaseCounter = (counter) => {
-    counter < 0 ? (counter = 0) : (counter = counter - 10);
+    counter <= 0 ? (counter = 0) : (counter = counter - 5);
     this.setState({ counter });
   };
 

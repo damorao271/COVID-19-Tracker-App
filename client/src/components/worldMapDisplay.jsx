@@ -15,8 +15,33 @@ class WorldMapDisplay extends Component {
     return radio;
   };
 
+  handleReshape = (superData) => {
+    let result = [];
+
+    for (let i = 0; i < superData.length; i++) {
+      result[i] = {
+        Active: superData[i].Active,
+        City: superData[i].City,
+        CityCode: superData[i].CityCode,
+        Data: superData[i].Confirmed,
+        Country: superData[i].Country,
+        CountryCode: superData[i].CountryCode,
+        Date: superData[i].Date,
+        Lat: superData[i].Lat,
+        Lon: superData[i].Lon,
+        Province: superData[i].Province,
+      };
+    }
+    console.log("Resultado", result);
+    return result;
+  };
+
   render() {
     const { superData, counter, increaseCounter, decreaseCounter } = this.props;
+
+    const result = this.handleReshape(superData);
+
+    console.log("Result Outside", result);
 
     if (!superData) {
       return (
@@ -35,9 +60,6 @@ class WorldMapDisplay extends Component {
 
     var fechas = _.map(_.uniqBy(superData, "Date"), "Date");
 
-    console.log("Counter", this.props);
-    console.log("Props", this.props);
-
     var filtradoPorValor = _.filter(
       superData,
       _.matchesProperty("Date", fechas[counter])
@@ -53,17 +75,11 @@ class WorldMapDisplay extends Component {
     var maxValue = _.maxBy(_.map(filtradoPorValor, "Confirmed"));
     // console.log("Filtrado solo valores de hoy", filtradoPorValor);
 
-    console.log("Logaritmo del valor maximo: ", Math.log(maxValue));
-
     console.log("Filtrado por Valor", filtradoPorValor);
     console.log("Filtrado Sin ceros");
     //  Para usar luego cuando haag por tipo de data
     // var filtradoPorTipoDeData = _.filter(filtradoPorValor, "Confirmed");
-    console.log("Promedio", mean);
-    console.log("Min", minValue);
-    console.log("Max", maxValue);
-    // console.log("Data Completa: ", filtradoPorValor);
-    // console.log("Solo Confirmados: ", filtradoPorTipoDeData);
+
     return (
       <div className="worlmap-container">
         <Map center={[10, 0]} zoom={1.5}>
@@ -81,7 +97,7 @@ class WorldMapDisplay extends Component {
               opacity={0}
               fillOpacity={
                 a.CountryCode === "US"
-                  ? Math.min(Math.max(Math.log2(a.Confirmed), 0), 0.3)
+                  ? Math.min(Math.max(Math.log2(a.Confirmed), 0), 0.05)
                   : Math.min(
                       Math.max(
                         Math.log2(a.Confirmed) / Math.log2(maxValue / 2),

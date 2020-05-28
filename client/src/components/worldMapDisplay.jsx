@@ -8,14 +8,25 @@ class WorldMapDisplay extends Component {
     console.log("Cambia Fecha");
   };
 
+  handleColor = (confirmados, min, max, mean) => {
+    let media = (max - min) / 2;
+    let radio = Math.min(Math.max(confirmados, 0) / media, 40);
+
+    return radio;
+  };
+
   render() {
     const { superData, counter, increaseCounter, decreaseCounter } = this.props;
 
     if (!superData) {
       return (
-        <h3>
-          Loading Map ... <p>This might take a minute</p>
-        </h3>
+        <div
+          style={({ width: "100" }, { height: "600px" })}
+          className="loading-map-container"
+        >
+          <h3 onClick={console.log(this.props)}>Loading Map ...</h3>
+          <p>This might take a minute</p>
+        </div>
       );
     }
 
@@ -34,14 +45,23 @@ class WorldMapDisplay extends Component {
 
     // Encontrar el promedio de la data
     var mean = _.meanBy(filtradoPorValor, (f) => f.Confirmed);
+
+    // _.remove(f.Confirmed, f.Confirmed === 0)
+
     // Encuentra los valores maximos y minimos del array filtrado por fecha
     var minValue = _.minBy(_.map(filtradoPorValor, "Confirmed"));
     var maxValue = _.maxBy(_.map(filtradoPorValor, "Confirmed"));
     // console.log("Filtrado solo valores de hoy", filtradoPorValor);
 
+    console.log("Logaritmo del valor maximo: ", Math.log(maxValue));
+
+    console.log("Filtrado por Valor", filtradoPorValor);
+    console.log("Filtrado Sin ceros");
     //  Para usar luego cuando haag por tipo de data
     // var filtradoPorTipoDeData = _.filter(filtradoPorValor, "Confirmed");
-
+    console.log("Promedio", mean);
+    console.log("Min", minValue);
+    console.log("Max", maxValue);
     // console.log("Data Completa: ", filtradoPorValor);
     // console.log("Solo Confirmados: ", filtradoPorTipoDeData);
     return (
@@ -58,7 +78,7 @@ class WorldMapDisplay extends Component {
               center={[a.Lat, a.Lon]}
               color="red"
               fillColor="red"
-              opacity={0.1}
+              opacity={0}
               fillOpacity={Math.min(
                 Math.max(
                   (6 * (a.Confirmed - minValue)) / (maxValue - minValue),
@@ -67,16 +87,9 @@ class WorldMapDisplay extends Component {
                 0.6
               )}
               radius={
-                a.Confirmed === maxValue
+                a.Confirmed === 0
                   ? 0
-                  : Math.min(
-                      Math.max(
-                        (200 * (a.Confirmed - minValue)) /
-                          (maxValue - minValue),
-                        0
-                      ),
-                      40
-                    )
+                  : Math.min(Math.max(Math.log2(a.Confirmed), 0), 40)
               }
             >
               <Popup
@@ -96,8 +109,8 @@ class WorldMapDisplay extends Component {
           ))}
         </Map>
 
-        <button onClick={() => increaseCounter(counter)}>Cambiar Fecha</button>
-        <button onClick={() => decreaseCounter(counter)}>Cambiar Fecha</button>
+        <button onClick={() => increaseCounter(counter)}>Increase Date</button>
+        <button onClick={() => decreaseCounter(counter)}>Decrease Date</button>
         <WorldMap superData={superData} color="blue" />
       </div>
     );

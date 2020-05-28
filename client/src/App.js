@@ -57,7 +57,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { superData, currentDate, counter } = this.state;
+    const { superData, counter } = this.state;
 
     console.log("superData: ", this.state.superData);
 

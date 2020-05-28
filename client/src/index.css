@@ -190,6 +190,10 @@
   width: 100%;
   height: 600px;
 }
+.loading-map-container {
+  width: 100%;
+  height: 600px;
+}
 
 .marker-cluster-custom {
   background: #9370db;

@@ -79,13 +79,17 @@ class WorldMapDisplay extends Component {
               color="red"
               fillColor="red"
               opacity={0}
-              fillOpacity={Math.min(
-                Math.max(
-                  (6 * (a.Confirmed - minValue)) / (maxValue - minValue),
-                  0
-                ),
-                0.6
-              )}
+              fillOpacity={
+                a.CountryCode === "US"
+                  ? Math.min(Math.max(Math.log2(a.Confirmed), 0), 0.3)
+                  : Math.min(
+                      Math.max(
+                        Math.log2(a.Confirmed) / Math.log2(maxValue / 2),
+                        0
+                      ),
+                      0.6
+                    )
+              }
               radius={
                 a.Confirmed === 0
                   ? 0

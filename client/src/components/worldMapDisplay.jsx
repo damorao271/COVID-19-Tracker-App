@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import WorldMap from "./common/worldMap";
+import MapNavbar from "./mapNavbar";
+import List from "./common/list";
+import Loader from "react-loader-spinner";
+import { Route, Switch } from "react-router-dom";
 import _ from "lodash";
-import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
 
 class WorldMapDisplay extends Component {
-  hadleDate = () => {
-    console.log("Cambia Fecha");
-  };
-
-  handleColor = (confirmados, min, max, mean) => {
-    let media = (max - min) / 2;
-    let radio = Math.min(Math.max(confirmados, 0) / media, 40);
-
-    return radio;
-  };
-
-  handleReshape = (superData) => {
+  // Filter Data just confirmed cases
+  dataConfirmed = (superData, counter) => {
     let result = [];
+    var fechas = _.map(_.uniqBy(superData, "Date"), "Date");
 
     for (let i = 0; i < superData.length; i++) {
       result[i] = {
@@ -32,106 +26,160 @@ class WorldMapDisplay extends Component {
         Province: superData[i].Province,
       };
     }
-    console.log("Resultado", result);
+
+    // Filtra los valores por fecha pero se repiten porque
+    // los paises tiene varias zonas
+    result = _.filter(result, _.matchesProperty("Date", fechas[counter]));
+
     return result;
   };
 
-  render() {
-    const { superData, counter, increaseCounter, decreaseCounter } = this.props;
+  // Filter Data just death cases
+  dataDeaths = (superData, counter) => {
+    let result = [];
+    var fechas = _.map(_.uniqBy(superData, "Date"), "Date");
 
-    const result = this.handleReshape(superData);
-
-    console.log("Result Outside", result);
-
-    if (!superData) {
-      return (
-        <div
-          style={({ width: "100" }, { height: "600px" })}
-          className="loading-map-container"
-        >
-          <h3 onClick={console.log(this.props)}>Loading Map ...</h3>
-          <p>This might take a minute</p>
-        </div>
-      );
+    for (let i = 0; i < superData.length; i++) {
+      result[i] = {
+        Active: superData[i].Active,
+        City: superData[i].City,
+        CityCode: superData[i].CityCode,
+        Data: superData[i].Deaths,
+        Country: superData[i].Country,
+        CountryCode: superData[i].CountryCode,
+        Date: superData[i].Date,
+        Lat: superData[i].Lat,
+        Lon: superData[i].Lon,
+        Province: superData[i].Province,
+      };
     }
 
     // Filtra los valores por fecha pero se repiten porque
     // los paises tiene varias zonas
+    result = _.filter(result, _.matchesProperty("Date", fechas[counter]));
 
+    return result;
+  };
+  // Filter Data just recovered cases
+  dataRecovered = (superData, counter) => {
+    let result = [];
     var fechas = _.map(_.uniqBy(superData, "Date"), "Date");
 
-    var filtradoPorValor = _.filter(
+    for (let i = 0; i < superData.length; i++) {
+      result[i] = {
+        Active: superData[i].Active,
+        City: superData[i].City,
+        CityCode: superData[i].CityCode,
+        Data: superData[i].Recovered,
+        Country: superData[i].Country,
+        CountryCode: superData[i].CountryCode,
+        Date: superData[i].Date,
+        Lat: superData[i].Lat,
+        Lon: superData[i].Lon,
+        Province: superData[i].Province,
+      };
+    }
+
+    // Filtra los valores por fecha pero se repiten porque
+    // los paises tiene varias zonas
+    result = _.filter(result, _.matchesProperty("Date", fechas[counter]));
+
+    return result;
+  };
+
+  render() {
+    const {
+      global,
       superData,
-      _.matchesProperty("Date", fechas[counter])
-    );
+      counter,
+      increaseCounter,
+      decreaseCounter,
+      countries,
+    } = this.props;
 
-    // Encontrar el promedio de la data
-    var mean = _.meanBy(filtradoPorValor, (f) => f.Confirmed);
+    const confirmedCases = this.dataConfirmed(superData, counter);
+    const recoveredCases = this.dataRecovered(superData, counter);
+    const deathCases = this.dataDeaths(superData, counter);
 
-    // _.remove(f.Confirmed, f.Confirmed === 0)
+    if (!superData) {
+      return (
+        <React.Fragment>
+          <MapNavbar global={global} />
 
-    // Encuentra los valores maximos y minimos del array filtrado por fecha
-    var minValue = _.minBy(_.map(filtradoPorValor, "Confirmed"));
-    var maxValue = _.maxBy(_.map(filtradoPorValor, "Confirmed"));
-    // console.log("Filtrado solo valores de hoy", filtradoPorValor);
-
-    console.log("Filtrado por Valor", filtradoPorValor);
-    console.log("Filtrado Sin ceros");
-    //  Para usar luego cuando haag por tipo de data
-    // var filtradoPorTipoDeData = _.filter(filtradoPorValor, "Confirmed");
+          <div className="map-spiner-container">
+            <Loader
+              type="Oval"
+              color="#00BFFF"
+              secondaryColor="red"
+              height={300}
+              width={300}
+              text="Loading Map ..."
+            />
+          </div>
+          <List countries={countries} />
+        </React.Fragment>
+      );
+    }
 
     return (
-      <div className="worlmap-container">
-        <Map center={[10, 0]} zoom={1.5}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      <div>
+        <MapNavbar global={global} />
+
+        <Switch>
+          <Route
+            path="/home/confirmed"
+            render={(props) => (
+              <WorldMap
+                title="Confirmed Cases"
+                data={confirmedCases}
+                color="red"
+                counter={counter}
+                increaseCounter={increaseCounter}
+                decreaseCounter={decreaseCounter}
+              />
+            )}
           />
 
-          {filtradoPorValor.map((a) => (
-            <CircleMarker
-              key={a.Country + a.Province + a.Lat + a.Lon + a.City + a.CityCode}
-              center={[a.Lat, a.Lon]}
-              color="red"
-              fillColor="red"
-              opacity={0}
-              fillOpacity={
-                a.CountryCode === "US"
-                  ? Math.min(Math.max(Math.log2(a.Confirmed), 0), 0.05)
-                  : Math.min(
-                      Math.max(
-                        Math.log2(a.Confirmed) / Math.log2(maxValue / 2),
-                        0
-                      ),
-                      0.6
-                    )
-              }
-              radius={
-                a.Confirmed === 0
-                  ? 0
-                  : Math.min(Math.max(Math.log2(a.Confirmed), 0), 40)
-              }
-            >
-              <Popup
-                className="pop-info"
-                direction="right"
-                offset={[0, 0]}
-                opacity={0.2}
-              >
-                <h6 onClick={() => this.handleMarker(a.Country)}>
-                  {a.Country} {a.Province} {a.City}
-                </h6>
-                <p>
-                  Confirmed Cases {a.Confirmed} Lat:{a.Lat} Lon:{a.Lon}{" "}
-                </p>
-              </Popup>
-            </CircleMarker>
-          ))}
-        </Map>
+          <Route
+            path="/home/recovered"
+            render={(props) => (
+              <WorldMap
+                data={recoveredCases}
+                color="greenyellow"
+                counter={counter}
+                increaseCounter={increaseCounter}
+                decreaseCounter={decreaseCounter}
+              />
+            )}
+          />
 
-        <button onClick={() => increaseCounter(counter)}>Increase Date</button>
-        <button onClick={() => decreaseCounter(counter)}>Decrease Date</button>
-        <WorldMap superData={superData} color="blue" />
+          <Route
+            path="/home/deaths"
+            render={(props) => (
+              <WorldMap
+                data={deathCases}
+                color="gray"
+                counter={counter}
+                increaseCounter={increaseCounter}
+                decreaseCounter={decreaseCounter}
+              />
+            )}
+          />
+
+          <Route
+            path="/home/"
+            render={(props) => (
+              <WorldMap
+                data={confirmedCases}
+                color="red"
+                counter={counter}
+                increaseCounter={increaseCounter}
+                decreaseCounter={decreaseCounter}
+              />
+            )}
+          />
+        </Switch>
+        <List countries={countries} />
       </div>
     );
   }

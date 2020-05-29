@@ -7,10 +7,10 @@ class Header extends Component {
       <div className="header-container">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <h6>
-            <NavLink to="/home">Home{"  "}</NavLink>
+            <NavLink to="/home/confirmed">Home</NavLink>
           </h6>
           <h6>
-            <NavLink to="/dataanalysis">Data Analysis </NavLink>
+            <NavLink to="/charts/totalconfirmed">Charts</NavLink>
           </h6>
         </nav>
       </div>

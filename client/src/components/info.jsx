@@ -27,7 +27,6 @@ class Info extends Component {
     console.log("Props desde Info: ", this.props);
     return (
       <div className="info-container">
-        <h3>Info</h3>
         <div className="row">
           <div className="element col-2">
             <Card

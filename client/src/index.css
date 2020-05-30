@@ -369,3 +369,16 @@ td {
   text-align: left;
   margin-left: 5px;
 }
+
+/* Slider */
+
+.slider-contaier {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-contaier div {
+  width: 50%;
+}

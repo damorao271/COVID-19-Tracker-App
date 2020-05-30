@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 class MapNavbar extends Component {
   render() {
     const { global } = this.props;
-    console.log("Global:", global);
 
     return (
       <div className="map-navbar-container ">

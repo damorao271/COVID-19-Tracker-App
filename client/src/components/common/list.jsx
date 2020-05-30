@@ -2,55 +2,73 @@ import React, { Component } from "react";
 
 class List extends Component {
   render() {
-    const { countries } = this.props;
+    const {
+      countries,
+      sortByConfirmed,
+      sortByRecovered,
+      sortByDeaths,
+    } = this.props;
     var counter = 1;
-
-    console.log("Props desde List:", this.props);
-    console.log("Countries:", countries);
 
     if (!countries) {
       return (
-        <table>
-          <thead>
-            <tr>
-              <th>Country</th>
-              <th>Total Confirmed</th>
-              <th>Total Recovered</th>
-              <th>Total Deaths</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-              <td>...</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-8">
+          <table>
+            <thead>
+              <tr>
+                <th>Country</th>
+                <th>Total Confirmed</th>
+                <th>Total Recovered</th>
+                <th>Total Deaths</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       );
     }
 
     return (
-      <div className="list-container">
+      <div className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-8">
         <table>
           <thead>
             <tr>
               <th>Position</th>
               <th>Country</th>
-              <th>Total Confirmed</th>
-              <th>Total Recovered</th>
-              <th>Total Deaths</th>
+              <th onClick={() => sortByConfirmed(countries)}>
+                Total Confirmed
+              </th>
+              <th onClick={() => sortByRecovered(countries)}>
+                Total Recovered
+              </th>
+              <th onClick={() => sortByDeaths(countries)}>Total Deaths</th>
             </tr>
           </thead>
           <tbody>
             {countries.map((c) => (
-              <tr>
-                <td>{counter++}</td>
-                <td>{c.Country}</td>
-                <td>{c.TotalConfirmed}</td>
-                <td>{c.TotalRecovered}</td>
-                <td>{c.TotalDeaths}</td>
+              <tr key={c.Country}>
+                <td>
+                  <p>{counter++}</p>
+                </td>
+                <td>
+                  <p>{c.Country}</p>
+                </td>
+                <td>
+                  <p>{c.TotalConfirmed}</p>
+                </td>
+                <td>
+                  <p>{c.TotalRecovered}</p>
+                </td>
+                <td>
+                  <p>{c.TotalDeaths}</p>
+                </td>
               </tr>
             ))}
           </tbody>

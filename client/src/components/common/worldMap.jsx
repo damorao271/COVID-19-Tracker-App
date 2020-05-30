@@ -4,6 +4,7 @@ import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
 class WorldMap extends Component {
   render() {
     const {
+      fechas,
       data,
       color,
       increaseCounter,
@@ -68,7 +69,7 @@ class WorldMap extends Component {
             ))}
           </Map>
         </div>
-        <button onClick={() => increaseCounter(counter)}>+</button>
+        <button onClick={() => increaseCounter(counter, fechas)}>+</button>
         <button onClick={() => decreaseCounter(counter)}>-</button>
       </React.Fragment>
     );

@@ -89,9 +89,13 @@ class WorldMapDisplay extends Component {
 
   render() {
     const {
+      fechas,
       global,
       superData,
       counter,
+      sortByConfirmed,
+      sortByRecovered,
+      sortByDeaths,
       increaseCounter,
       decreaseCounter,
       countries,
@@ -105,18 +109,40 @@ class WorldMapDisplay extends Component {
       return (
         <React.Fragment>
           <MapNavbar global={global} />
-
           <div className="map-spiner-container">
             <Loader
               type="Oval"
-              color="#00BFFF"
+              // color="#00BFFF"
+              color="gray"
               secondaryColor="red"
-              height={300}
-              width={300}
-              text="Loading Map ..."
+              height="33%"
+              width="33%"
             />
+            <Loader
+              type="Oval"
+              // color="#00BFFF"
+              color="gray"
+              secondaryColor="red"
+              height="33%"
+              width="33%"
+            />
+            <Loader
+              type="Oval"
+              // color="#00BFFF"
+              color="gray"
+              secondaryColor="red"
+              height="33%"
+              width="33%"
+            />
+            {/* <p> Loading Map ...</p>
+            <p> This might take a minute</p> */}
           </div>
-          <List countries={countries} />
+          <List
+            sortByConfirmed={sortByConfirmed}
+            sortByRecovered={sortByRecovered}
+            sortByDeaths={sortByDeaths}
+            countries={countries}
+          />
         </React.Fragment>
       );
     }
@@ -130,6 +156,7 @@ class WorldMapDisplay extends Component {
             path="/home/confirmed"
             render={(props) => (
               <WorldMap
+                fechas={fechas}
                 title="Confirmed Cases"
                 data={confirmedCases}
                 color="red"
@@ -144,6 +171,7 @@ class WorldMapDisplay extends Component {
             path="/home/recovered"
             render={(props) => (
               <WorldMap
+                fechas={fechas}
                 data={recoveredCases}
                 color="greenyellow"
                 counter={counter}
@@ -157,6 +185,7 @@ class WorldMapDisplay extends Component {
             path="/home/deaths"
             render={(props) => (
               <WorldMap
+                fechas={fechas}
                 data={deathCases}
                 color="gray"
                 counter={counter}
@@ -170,6 +199,7 @@ class WorldMapDisplay extends Component {
             path="/home/"
             render={(props) => (
               <WorldMap
+                fechas={fechas}
                 data={confirmedCases}
                 color="red"
                 counter={counter}
@@ -179,7 +209,14 @@ class WorldMapDisplay extends Component {
             )}
           />
         </Switch>
-        <List countries={countries} />
+        <div className="row">
+          <List
+            sortByConfirmed={sortByConfirmed}
+            sortByRecovered={sortByRecovered}
+            sortByDeaths={sortByDeaths}
+            countries={countries}
+          />
+        </div>
       </div>
     );
   }

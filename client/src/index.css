@@ -331,12 +331,19 @@
 }
 
 /* Lista  */
+.list-countries-container {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.list-countries-container table {
+  width: 100%;
+}
+
 .list-countries-container table,
 th,
 td {
-  overflow-y: auto;
-  overflow-x: hidden;
-
   border: 1px solid gray;
 }
 
@@ -366,6 +373,7 @@ td {
 }
 
 .list-countries-container tr td:nth-child(2) {
+  width: 180px;
   text-align: left;
   margin-left: 5px;
 }

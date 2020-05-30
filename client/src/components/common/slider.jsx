@@ -16,31 +16,32 @@ class SliderComponent extends Component {
 
     const PrettoSlider = withStyles({
       root: {
-        color: "#52af77",
+        color: "red",
         height: 8,
       },
       thumb: {
-        height: 24,
-        width: 24,
-        backgroundColor: "#fff",
+        height: 12,
+        width: 12,
+        backgroundColor: "gray",
+        color: "red",
         border: "2px solid currentColor",
-        marginTop: -8,
-        marginLeft: -12,
+        marginTop: -4,
+        // marginLeft: -6,
         "&:focus, &:hover, &$active": {
           boxShadow: "inherit",
         },
       },
       active: {},
       valueLabel: {
-        left: "calc(-50% + 4px)",
+        // left: "calc(-50% + 4px)",
       },
       track: {
-        height: 8,
-        borderRadius: 4,
+        height: 4,
+        borderRadius: 2,
       },
       rail: {
-        height: 8,
-        borderRadius: 4,
+        height: 4,
+        borderRadius: 2,
       },
     })(Slider);
 

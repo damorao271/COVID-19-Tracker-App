@@ -21,3 +21,13 @@ export const getDailyData = async () => {
     return error;
   }
 };
+
+export const getDayOneCountry = async () => {
+  let urlSummary = url + "/dayone/country/venezuela";
+  try {
+    const { data } = await axios.get(urlSummary);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

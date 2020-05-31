@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
+import Slider from "./secondSlider";
 
 class WorldMap extends Component {
   render() {
@@ -7,9 +8,9 @@ class WorldMap extends Component {
       fechas,
       data,
       color,
-      increaseCounter,
-      decreaseCounter,
       counter,
+      handleChange,
+      handleDragStop,
     } = this.props;
 
     if (!data) {
@@ -69,8 +70,12 @@ class WorldMap extends Component {
             ))}
           </Map>
         </div>
-        <button onClick={() => increaseCounter(counter, fechas)}>+</button>
-        <button onClick={() => decreaseCounter(counter)}>-</button>
+        <Slider
+          fechas={fechas}
+          counter={counter}
+          handleChange={handleChange}
+          handleDragStop={handleDragStop}
+        />
       </React.Fragment>
     );
   }

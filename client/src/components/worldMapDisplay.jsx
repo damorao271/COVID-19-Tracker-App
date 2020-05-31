@@ -96,8 +96,8 @@ class WorldMapDisplay extends Component {
       sortByConfirmed,
       sortByRecovered,
       sortByDeaths,
-      increaseCounter,
-      decreaseCounter,
+      handleChange,
+      handleDragStop,
       countries,
     } = this.props;
 
@@ -161,8 +161,8 @@ class WorldMapDisplay extends Component {
                 data={confirmedCases}
                 color="red"
                 counter={counter}
-                increaseCounter={increaseCounter}
-                decreaseCounter={decreaseCounter}
+                handleChange={handleChange}
+                handleDragStop={handleDragStop}
               />
             )}
           />
@@ -175,8 +175,8 @@ class WorldMapDisplay extends Component {
                 data={recoveredCases}
                 color="greenyellow"
                 counter={counter}
-                increaseCounter={increaseCounter}
-                decreaseCounter={decreaseCounter}
+                handleChange={handleChange}
+                handleDragStop={handleDragStop}
               />
             )}
           />
@@ -189,8 +189,8 @@ class WorldMapDisplay extends Component {
                 data={deathCases}
                 color="gray"
                 counter={counter}
-                increaseCounter={increaseCounter}
-                decreaseCounter={decreaseCounter}
+                handleChange={handleChange}
+                handleDragStop={handleDragStop}
               />
             )}
           />
@@ -203,8 +203,8 @@ class WorldMapDisplay extends Component {
                 data={confirmedCases}
                 color="red"
                 counter={counter}
-                increaseCounter={increaseCounter}
-                decreaseCounter={decreaseCounter}
+                handleChange={handleChange}
+                handleDragStop={handleDragStop}
               />
             )}
           />

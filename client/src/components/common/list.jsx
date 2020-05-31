@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CountUp from "react-countup";
 
 class List extends Component {
   render() {
@@ -12,18 +13,124 @@ class List extends Component {
 
     if (!countries) {
       return (
-        <div className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-8">
+        <div
+          // style={{ overflow: "auto" }}
+          className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6"
+        >
           <table>
             <thead>
               <tr>
-                <th>Country</th>
-                <th>Total Confirmed</th>
-                <th>Total Recovered</th>
-                <th>Total Deaths</th>
+                <th>
+                  <h5>Position</h5>
+                </th>
+                <th>
+                  <h5>Country</h5>
+                </th>
+                <th>
+                  <h5>Total Confirmed</h5>
+                </th>
+                <th>
+                  <h5>Total Recovered</h5>
+                </th>
+                <th>
+                  <h5>Total Deaths</h5>
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
@@ -43,15 +150,21 @@ class List extends Component {
         <table>
           <thead>
             <tr>
-              <th>Position</th>
-              <th>Country</th>
+              <th>
+                <h5>Position</h5>
+              </th>
+              <th>
+                <h5>Country</h5>
+              </th>
               <th onClick={() => sortByConfirmed(countries)}>
-                Total Confirmed
+                <h5>Total Confirmed</h5>
               </th>
               <th onClick={() => sortByRecovered(countries)}>
-                Total Recovered
+                <h5>Total Recovered</h5>
               </th>
-              <th onClick={() => sortByDeaths(countries)}>Total Deaths</th>
+              <th onClick={() => sortByDeaths(countries)}>
+                <h5>Total Deaths</h5>{" "}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -64,13 +177,34 @@ class List extends Component {
                   <p>{c.Country}</p>
                 </td>
                 <td>
-                  <p>{c.TotalConfirmed}</p>
+                  <p>
+                    <CountUp
+                      start={c.TotalConfirmed / 1.03}
+                      end={c.TotalConfirmed}
+                      duration={3}
+                      separator="."
+                    />
+                  </p>
                 </td>
                 <td>
-                  <p>{c.TotalRecovered}</p>
+                  <p>
+                    <CountUp
+                      start={c.TotalRecovered / 1.03}
+                      end={c.TotalRecovered}
+                      duration={3}
+                      separator="."
+                    />
+                  </p>
                 </td>
                 <td>
-                  <p>{c.TotalDeaths}</p>
+                  <p>
+                    <CountUp
+                      start={c.TotalDeaths / 1.03}
+                      end={c.TotalDeaths}
+                      duration={3}
+                      separator="."
+                    />
+                  </p>
                 </td>
               </tr>
             ))}

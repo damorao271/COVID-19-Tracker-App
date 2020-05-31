@@ -2,7 +2,6 @@ import React from "react";
 import { getSummaryData, getDailyData } from "./services/getdata";
 import WorldMapDisplay from "./components/worldMapDisplay";
 import Header from "./components/header";
-import Slider from "./components/common/slider";
 import Info from "./components/info";
 import { Route, Switch } from "react-router-dom";
 import _ from "lodash";
@@ -38,23 +37,7 @@ class App extends React.Component {
     let counter = fechas.length - 1;
 
     this.setState({ superData, fechas, counter });
-    console.log("Fechas: ", fechas);
-    console.log("Counter: ", counter);
   }
-
-  increaseCounter = (counter, fechas) => {
-    counter >= fechas.length - 1
-      ? (counter = fechas.length - 1)
-      : (counter = counter + 1);
-    this.setState({ counter });
-    console.log("Counter: ", counter);
-  };
-
-  decreaseCounter = (counter) => {
-    counter <= 0 ? (counter = 0) : (counter = counter - 1);
-    this.setState({ counter });
-    console.log("Counter: ", counter);
-  };
 
   // Crea un array de colores para la grafica de pastel
   stringOfColors = (country) => {
@@ -88,14 +71,22 @@ class App extends React.Component {
     this.setState({ countries });
   };
 
+  // Actualiza  el State del slider
+  handleChange = (event, counter) => {
+    this.setState({ counter });
+  };
+
+  // Actualiza  el Props del slider
+  handleDragStop = (counter) => {
+    this.props.update(counter);
+  };
+
   render() {
     const { superData, global, counter, countries, fechas } = this.state;
 
     return (
       <div className="App">
         <Header />
-        <Slider fechas={fechas} counter={counter} />
-
         <Switch>
           <Route
             path="/charts"
@@ -107,14 +98,14 @@ class App extends React.Component {
             path="/home"
             render={(props) => (
               <WorldMapDisplay
+                handleChange={this.handleChange}
+                handleDragStop={this.handleDragStop}
                 fechas={fechas}
                 sortByConfirmed={this.sortByConfirmed}
                 sortByRecovered={this.sortByRecovered}
                 sortByDeaths={this.sortByDeaths}
                 countries={countries}
                 global={global}
-                decreaseCounter={this.decreaseCounter}
-                increaseCounter={this.increaseCounter}
                 counter={counter}
                 superData={superData}
               />

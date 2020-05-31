@@ -71,6 +71,7 @@ class WorldMap extends Component {
           </Map>
         </div>
         <Slider
+          color={color}
           fechas={fechas}
           counter={counter}
           handleChange={handleChange}

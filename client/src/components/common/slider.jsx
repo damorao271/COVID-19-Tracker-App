@@ -15,7 +15,7 @@ class SliderComponent extends Component {
   handleDragStop = () => this.props.update(this.state.value);
 
   render() {
-    const { counter, fechas, handleChange, handleDragStop } = this.state;
+    const { counter, fechas } = this.state;
 
     var fecha = new Date(fechas[counter]);
     const maxLength = fechas.length;

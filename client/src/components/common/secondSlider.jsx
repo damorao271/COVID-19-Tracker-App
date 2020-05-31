@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 class SecondSlider extends Component {
   render() {
-    const { counter, fechas } = this.props;
+    const { counter, fechas, color } = this.props;
 
     var fecha = new Date(fechas[counter]);
     var dia = fecha.toLocaleString("en-US", {
@@ -17,13 +17,13 @@ class SecondSlider extends Component {
 
     const PrettoSlider = withStyles({
       root: {
-        color: "red",
+        color: color,
         height: 8,
       },
       thumb: {
         height: 12,
         width: 12,
-        backgroundColor: "red",
+        backgroundColor: { color },
         border: "2px solid currentColor",
         marginTop: -4,
         marginLeft: -6,
@@ -34,6 +34,9 @@ class SecondSlider extends Component {
       active: {},
       valueLabel: {
         left: "-11px",
+        top: "-20px",
+        background: "transparent",
+        color: "#000",
       },
       track: {
         height: 4,
@@ -79,26 +82,31 @@ class SecondSlider extends Component {
       return <h6>Loading...</h6>;
     }
 
+    console.log("Color: ", color);
+
     return (
       <React.Fragment>
-        <div className="slider-contaier">
-          <div>
-            <PrettoSlider
-              valueLabelDisplay="auto"
-              aria-label="pretto slider"
-              defaultValue={counter}
-              step={1}
-              marks={marks}
-              min={0}
-              max={fechas.length}
-              value={counter}
-              onDragStop={this.props.handleDragStop}
-              onChange={this.props.handleChange}
-            />
+        <div className="slider-contaier row">
+          <div className="col-8">
+            <div>
+              <PrettoSlider
+                valueLabelDisplay="auto"
+                aria-label="pretto slider"
+                defaultValue={counter}
+                step={1}
+                marks={marks}
+                min={0}
+                max={fechas.length}
+                value={counter}
+                onDragStop={this.props.handleDragStop}
+                onChange={this.props.handleChange}
+              />
+            </div>
           </div>
-          <button onClick={() => console.log(this.props.counter)}>
-            {counter} Date: {dia}
-          </button>
+          <div className="col-4">
+            <h6>Day: {counter} </h6>
+            <p>{dia}</p>
+          </div>
         </div>
       </React.Fragment>
     );

@@ -1,12 +1,18 @@
 import React, { Component } from "react";
 import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
-import Slider from "./secondSlider";
+import CountUp from "react-countup";
+import Slider from "./mapSlider";
 
 class WorldMap extends Component {
+  handleMarker = (country) => {
+    console.log(country);
+  };
+
   render() {
     const {
       fechas,
       data,
+      type,
       color,
       counter,
       handleChange,
@@ -28,8 +34,7 @@ class WorldMap extends Component {
           <Map center={[10, 0]} zoom={1.5}>
             <TileLayer
               // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              url="            https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png
-            "
+              url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
 
@@ -59,12 +64,31 @@ class WorldMap extends Component {
                   offset={[0, 0]}
                   opacity={0.2}
                 >
-                  <h6 onClick={() => this.handleMarker(a.Country)}>
-                    {a.Country} {a.Province} {a.City}
-                  </h6>
-                  <p>
-                    Confirmed Cases {a.Data} Lat:{a.Lat} Lon:{a.Lon}{" "}
-                  </p>
+                  <div className="popup-container">
+                    <div>
+                      <h6 onClick={() => this.handleMarker(a.Country)}>
+                        {a.Country}
+                        <p>
+                          {a.Province} {a.City}
+                        </p>
+                      </h6>
+                    </div>
+                    <div>
+                      <h6>
+                        <CountUp
+                          start={a.Data / 2}
+                          end={a.Data}
+                          duration={3}
+                          separator="."
+                        />
+                      </h6>
+                    </div>
+                    <div>
+                      <p>
+                        Lat:{a.Lat} Lon:{a.Lon}
+                      </p>
+                    </div>
+                  </div>
                 </Popup>
               </CircleMarker>
             ))}

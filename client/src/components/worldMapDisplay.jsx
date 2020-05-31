@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import WorldMap from "./common/worldMap";
 import MapNavbar from "./mapNavbar";
 import List from "./common/list";
+import Chart from "./common/chart";
 import Loader from "react-loader-spinner";
 import { Route, Switch } from "react-router-dom";
 import _ from "lodash";
@@ -137,12 +138,15 @@ class WorldMapDisplay extends Component {
             {/* <p> Loading Map ...</p>
             <p> This might take a minute</p> */}
           </div>
-          <List
-            sortByConfirmed={sortByConfirmed}
-            sortByRecovered={sortByRecovered}
-            sortByDeaths={sortByDeaths}
-            countries={countries}
-          />
+          <div className="row">
+            <List
+              sortByConfirmed={sortByConfirmed}
+              sortByRecovered={sortByRecovered}
+              sortByDeaths={sortByDeaths}
+              countries={countries}
+            />
+            <Chart />
+          </div>
         </React.Fragment>
       );
     }
@@ -158,6 +162,7 @@ class WorldMapDisplay extends Component {
               <WorldMap
                 fechas={fechas}
                 title="Confirmed Cases"
+                type="Cases"
                 data={confirmedCases}
                 color="red"
                 counter={counter}
@@ -173,6 +178,7 @@ class WorldMapDisplay extends Component {
               <WorldMap
                 fechas={fechas}
                 data={recoveredCases}
+                type="Reovered"
                 color="greenyellow"
                 counter={counter}
                 handleChange={handleChange}
@@ -186,6 +192,7 @@ class WorldMapDisplay extends Component {
             render={(props) => (
               <WorldMap
                 fechas={fechas}
+                type="Deaths"
                 data={deathCases}
                 color="gray"
                 counter={counter}
@@ -200,6 +207,7 @@ class WorldMapDisplay extends Component {
             render={(props) => (
               <WorldMap
                 fechas={fechas}
+                type="Cases"
                 data={confirmedCases}
                 color="red"
                 counter={counter}
@@ -216,6 +224,7 @@ class WorldMapDisplay extends Component {
             sortByDeaths={sortByDeaths}
             countries={countries}
           />
+          <Chart />
         </div>
       </div>
     );

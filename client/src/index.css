@@ -259,6 +259,19 @@
 }
 
 /*   Map Navbar       */
+
+.map-navbar-container nav > div {
+  border: solid black 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-navbar-container a {
+  display: flex;
+  align-items: center;
+}
+
 .map-navbar-container a {
   text-decoration: none;
   color: black;
@@ -293,14 +306,6 @@
   width: 40px;
 }
 
-.pop-info {
-  color: orange;
-}
-
-.pop-info h6:hover {
-  cursor: pointer;
-}
-
 .world-map-container {
   display: flex;
   justify-content: center;
@@ -330,6 +335,47 @@
   height: 400px;
 }
 
+/* Popup */
+.pop-info:hover {
+  cursor: pointer;
+}
+
+.popup-container div:nth-child(1) {
+  text-align: center;
+  margin: 0px;
+}
+
+.popup-container div:nth-child(1) h6 {
+  margin: 0px;
+}
+
+.popup-container div:nth-child(1) p {
+  font-size: 10px;
+  text-align: center;
+  margin: 0px;
+}
+
+.popup-container div:nth-child(2) {
+  text-align: center;
+}
+
+.popup-container div:nth-child(2) h6:first-child {
+  color: red;
+  font-weight: bold;
+}
+
+.popup-container div:nth-child(2) h6 {
+  margin: 0px;
+}
+
+.popup-container div:nth-child(3) {
+  text-align: center;
+}
+
+.popup-container div:nth-child(3) p {
+  margin: 0px;
+}
+
 /* Lista  */
 
 .list-countries-container {
@@ -340,6 +386,10 @@
 }
 
 .list-countries-container thead th {
+  transition: all 300ms;
+}
+
+.list-countries-container thead th h5 {
   transition: all 300ms;
 }
 
@@ -401,6 +451,21 @@ td {
   width: 180px;
   text-align: left;
   margin-left: 5px;
+}
+
+.list-countries-container tbody td:nth-child(3) p {
+  font-weight: bold;
+  color: red;
+}
+
+.list-countries-container tbody td:nth-child(4) p {
+  font-weight: bold;
+  color: yellowgreen;
+}
+
+.list-countries-container tbody td:nth-child(5) p {
+  font-weight: bold;
+  color: gray;
 }
 
 /* Slider */

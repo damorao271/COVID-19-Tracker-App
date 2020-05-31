@@ -51,6 +51,48 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>{" "}
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
               </tr>
               <tr>
                 <td>...</td>
@@ -143,10 +185,7 @@ class List extends Component {
     }
 
     return (
-      <div
-        // style={{ overflow: "auto" }}
-        className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6"
-      >
+      <div className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
         <table>
           <thead>
             <tr>

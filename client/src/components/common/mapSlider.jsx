@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import { withStyles } from "@material-ui/core/styles";
 
-class SecondSlider extends Component {
+class MapSlider extends Component {
   render() {
     const { counter, fechas, color } = this.props;
 
@@ -36,7 +36,6 @@ class SecondSlider extends Component {
         left: "-11px",
         top: "-20px",
         background: "transparent",
-        color: "#000",
       },
       track: {
         height: 4,
@@ -113,4 +112,4 @@ class SecondSlider extends Component {
   }
 }
 
-export default SecondSlider;
+export default MapSlider;

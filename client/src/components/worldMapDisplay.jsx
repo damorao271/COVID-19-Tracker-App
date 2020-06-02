@@ -141,6 +141,16 @@ class WorldMapDisplay extends Component {
               width="33%"
             />
           </div>
+          <div className="slider-contaier spinner row">
+            <Loader
+              type="ThreeDots"
+              // color="#00BFFF"
+              color="gray"
+              secondaryColor="red"
+              height="33%"
+              width="33%"
+            />
+          </div>
           <div className="second-half row">
             <List
               handleCountrySpecific={handleCountrySpecific}

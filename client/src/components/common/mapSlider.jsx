@@ -91,12 +91,10 @@ class MapSlider extends Component {
       );
     }
 
-    console.log("Color: ", color);
-
     return (
       <React.Fragment>
         <div className="slider-contaier row">
-          <div className="col-8">
+          <div className="col-9">
             <div>
               <PrettoSlider
                 valueLabelDisplay="auto"
@@ -112,10 +110,16 @@ class MapSlider extends Component {
               />
             </div>
           </div>
-          <div className="col-4">
-            <h6>Day: {counter} </h6>
-            <p>{dia}</p>
+          <div className="day-display col-3">
+            <div className="row">
+              <h6>Day:</h6>
+              <h5 style={{ color: color }}>{counter}</h5>
+            </div>
+            <div className="row">
+              <h6>{dia}</h6>
+            </div>
           </div>
+          ``
         </div>
       </React.Fragment>
     );

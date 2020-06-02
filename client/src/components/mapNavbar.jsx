@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import coronaImage from "../../src/img/corona.png";
 import CountUp from "react-countup";
 
 class MapNavbar extends Component {
@@ -9,7 +10,10 @@ class MapNavbar extends Component {
     return (
       <div className="map-navbar-container ">
         <nav className="row">
-          <div className="col-3">
+          <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <img className="logo" src={coronaImage} alt="COVID-19" />
+          </div>
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
             <NavLink to="/home/confirmed">
               <div className="confirmed-navlink row">
                 <div className="col-9">
@@ -37,7 +41,7 @@ class MapNavbar extends Component {
               </div>
             </NavLink>
           </div>
-          <div className="col-3">
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
             <NavLink to="/home/recovered">
               <div className="recovered-navlink row">
                 <div className="col-9">
@@ -65,7 +69,7 @@ class MapNavbar extends Component {
               </div>
             </NavLink>
           </div>
-          <div className="col-3">
+          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
             <NavLink to="/home/deaths">
               <div className="deaths-navlink row">
                 <div className="col-9">
@@ -92,9 +96,6 @@ class MapNavbar extends Component {
                 </div>
               </div>
             </NavLink>
-          </div>
-          <div className="col-3">
-            <input type="text" />
           </div>
         </nav>
       </div>

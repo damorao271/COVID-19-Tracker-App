@@ -276,6 +276,16 @@
 .map-navbar-container a {
   width: 100%;
 }
+.confirmed-navlink h4 {
+  margin: 0px;
+}
+
+.recovered-navlink h4 {
+  margin: 0px;
+}
+.deaths-navlink h4 {
+  margin: 0px;
+}
 
 .confirmed-navlink {
   text-align: center;
@@ -477,11 +487,11 @@
 .popup-container div:nth-child(2) {
   text-align: center;
 }
-
+/* 
 .popup-container div:nth-child(2) h6:first-child {
   color: red;
   font-weight: bold;
-}
+} */
 
 .popup-container div:nth-child(2) h6 {
   margin: 0px;
@@ -515,6 +525,8 @@
 
 .list-countries-container thead th:hover {
   box-shadow: 0px 0px 3px gray;
+  background-color: rgba(119, 117, 117, 0.1);
+  cursor: pointer;
 }
 
 .list-countries-container thead th:hover:first-child {
@@ -548,10 +560,11 @@ td {
   transition: all 300ms;
 }
 
-.list-countries-container tr:hover {
+.list-countries-container tbody tr:hover {
   border: 1px solid black;
   cursor: pointer;
   box-shadow: 0px 0px 3px gray inset;
+  background-color: rgba(119, 117, 117, 0.1);
 }
 .list-countries-container tr:hover:first-child {
   box-shadow: none;
@@ -608,6 +621,10 @@ td {
 
 /* Slider */
 
+.slider-contaier {
+  height: 80px;
+}
+
 .slider-contaier div {
   margin-top: 20px;
 }
@@ -656,4 +673,37 @@ td {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.logo {
+  width: 85%;
+}
+
+/* Dia del Slider */
+.day-display {
+  color: black;
+}
+
+.day-display div {
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.day-display div h6 {
+  font-size: 40px;
+  margin: 0px;
+  margin-right: 8px;
+  margin-top: 0px !important;
+}
+
+.day-display h5 {
+  margin: 0px;
+  font-size: 40px;
+}
+
+.day-display div:nth-child(2) h6 {
+  margin: 0px;
+  font-size: 10px;
 }

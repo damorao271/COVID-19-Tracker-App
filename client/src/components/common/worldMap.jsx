@@ -29,6 +29,11 @@ class WorldMap extends Component {
       );
     }
 
+    const myStyle = {
+      fontWeight: "bold",
+      color: color,
+    };
+
     return (
       <React.Fragment>
         <div className="world-map-container">
@@ -75,7 +80,7 @@ class WorldMap extends Component {
                       </h6>
                     </div>
                     <div>
-                      <h6>
+                      <h6 style={myStyle}>
                         <CountUp
                           start={a.Data / 2}
                           end={a.Data}

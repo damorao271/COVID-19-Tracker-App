@@ -31,3 +31,13 @@ export const getDayOneCountry = async () => {
     return error;
   }
 };
+
+export const getDayOneSpecific = async (pais) => {
+  let urlSummary = url + `/dayone/country/${pais}`;
+  try {
+    const { data } = await axios.get(urlSummary);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};

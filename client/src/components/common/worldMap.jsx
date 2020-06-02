@@ -15,6 +15,7 @@ class WorldMap extends Component {
       type,
       color,
       counter,
+      handleCountrySpecific,
       handleChange,
       handleDragStop,
     } = this.props;
@@ -66,7 +67,7 @@ class WorldMap extends Component {
                 >
                   <div className="popup-container">
                     <div>
-                      <h6 onClick={() => this.handleMarker(a.Country)}>
+                      <h6 onClick={() => handleCountrySpecific(a.CountryCode)}>
                         {a.Country}
                         <p>
                           {a.Province} {a.City}

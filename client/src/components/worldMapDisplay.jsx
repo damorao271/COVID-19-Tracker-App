@@ -90,10 +90,13 @@ class WorldMapDisplay extends Component {
 
   render() {
     const {
+      pais,
       fechas,
       global,
       superData,
       counter,
+      sumDaysAndCities,
+      handleCountrySpecific,
       sortByConfirmed,
       sortByRecovered,
       sortByDeaths,
@@ -101,6 +104,8 @@ class WorldMapDisplay extends Component {
       handleDragStop,
       countries,
     } = this.props;
+
+    console.log("Super data: ", superData);
 
     const confirmedCases = this.dataConfirmed(superData, counter);
     const recoveredCases = this.dataRecovered(superData, counter);
@@ -140,12 +145,13 @@ class WorldMapDisplay extends Component {
           </div>
           <div className="row">
             <List
+              handleCountrySpecific={handleCountrySpecific}
               sortByConfirmed={sortByConfirmed}
               sortByRecovered={sortByRecovered}
               sortByDeaths={sortByDeaths}
               countries={countries}
             />
-            <Chart />
+            <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
           </div>
         </React.Fragment>
       );
@@ -166,6 +172,7 @@ class WorldMapDisplay extends Component {
                 data={confirmedCases}
                 color="red"
                 counter={counter}
+                handleCountrySpecific={handleCountrySpecific}
                 handleChange={handleChange}
                 handleDragStop={handleDragStop}
               />
@@ -181,6 +188,7 @@ class WorldMapDisplay extends Component {
                 type="Reovered"
                 color="greenyellow"
                 counter={counter}
+                handleCountrySpecific={handleCountrySpecific}
                 handleChange={handleChange}
                 handleDragStop={handleDragStop}
               />
@@ -196,6 +204,7 @@ class WorldMapDisplay extends Component {
                 data={deathCases}
                 color="gray"
                 counter={counter}
+                handleCountrySpecific={handleCountrySpecific}
                 handleChange={handleChange}
                 handleDragStop={handleDragStop}
               />
@@ -211,6 +220,7 @@ class WorldMapDisplay extends Component {
                 data={confirmedCases}
                 color="red"
                 counter={counter}
+                handleCountrySpecific={handleCountrySpecific}
                 handleChange={handleChange}
                 handleDragStop={handleDragStop}
               />
@@ -219,12 +229,13 @@ class WorldMapDisplay extends Component {
         </Switch>
         <div className="row">
           <List
+            handleCountrySpecific={handleCountrySpecific}
             sortByConfirmed={sortByConfirmed}
             sortByRecovered={sortByRecovered}
             sortByDeaths={sortByDeaths}
             countries={countries}
           />
-          <Chart />
+          <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
         </div>
       </div>
     );

@@ -5,12 +5,13 @@ class List extends Component {
   render() {
     const {
       countries,
+      handleCountrySpecific,
       sortByConfirmed,
       sortByRecovered,
       sortByDeaths,
     } = this.props;
     var counter = 1;
-
+    console.log("List Props: ", this.props);
     if (!countries) {
       return (
         <div
@@ -44,49 +45,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -100,7 +59,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -114,7 +73,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -128,7 +87,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -142,7 +101,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -156,7 +115,7 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -170,7 +129,49 @@ class List extends Component {
                 <td>...</td>
                 <td>...</td>
                 <td>...</td>
-              </tr>{" "}
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
+              <tr>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+                <td>...</td>
+              </tr>
               <tr>
                 <td>...</td>
                 <td>...</td>
@@ -202,13 +203,13 @@ class List extends Component {
                 <h5>Total Recovered</h5>
               </th>
               <th onClick={() => sortByDeaths(countries)}>
-                <h5>Total Deaths</h5>{" "}
+                <h5>Total Deaths</h5>
               </th>
             </tr>
           </thead>
           <tbody>
             {countries.map((c) => (
-              <tr key={c.Country}>
+              <tr key={c.Country} onClick={() => handleCountrySpecific(c.Slug)}>
                 <td>
                   <p>{counter++}</p>
                 </td>

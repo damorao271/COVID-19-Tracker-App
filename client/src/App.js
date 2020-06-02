@@ -1,5 +1,10 @@
 import React from "react";
-import { getSummaryData, getDailyData } from "./services/getdata";
+import {
+  getSummaryData,
+  getDailyData,
+  getDayOneCountry,
+  getDayOneSpecific,
+} from "./services/getdata";
 import WorldMapDisplay from "./components/worldMapDisplay";
 import Header from "./components/header";
 import Info from "./components/info";
@@ -15,6 +20,7 @@ class App extends React.Component {
     superData: "",
     counter: 0,
     fechas: [],
+    pais: "",
   };
 
   // Obtiene los datos del server
@@ -28,14 +34,14 @@ class App extends React.Component {
     countries = _.sortBy(countries, (f) => f.TotalConfirmed).reverse();
 
     let colors = this.stringOfColors(countries);
+    let pais = await getDayOneCountry();
 
     global.Country = "Global";
-    this.setState({ global, countries, currentDate: date, colors });
+    this.setState({ pais, global, countries, currentDate: date, colors });
 
     let superData = await getDailyData();
     let fechas = _.map(_.uniqBy(superData, "Date"), "Date");
     let counter = fechas.length - 1;
-
     this.setState({ superData, fechas, counter });
   }
 
@@ -81,8 +87,49 @@ class App extends React.Component {
     this.props.update(counter);
   };
 
+  // Actualiza el pais del Props
+  handleCountrySpecific = async (country) => {
+    let pais = await getDayOneSpecific(country);
+    this.setState({ pais });
+  };
+
+  // Suma todos los casos de todas las regiones por dia para hacer un
+  // solo display
+  sumDaysAndCities = (pais) => {
+    let country = [];
+    let j = 0;
+    for (let i = 0; i < pais.length - 1; i++) {
+      // Trim string or pasrse integer
+
+      if (pais[i].Date === pais[i + 1].Date) {
+        pais[i + 1] = {
+          Country: pais[i].Country,
+          Date: pais[i + 1].Date,
+          Confirmed: pais[i].Confirmed + pais[i + 1].Confirmed,
+          Deaths: pais[i].Deaths + pais[i + 1].Deaths,
+          Recovered: pais[i].Recovered + pais[i + 1].Recovered,
+        };
+      } else {
+        country[j] = {
+          Country: pais[i].Country,
+          Date: pais[i].Date,
+          Confirmed: pais[i].Confirmed,
+          Deaths: pais[i].Deaths,
+          Recovered: pais[i].Recovered,
+          Province: pais[i].Province,
+          City: pais[i].City,
+          sumado: true,
+          i: i,
+          j: j,
+        };
+        j = j + 1;
+      }
+    }
+    return country;
+  };
+
   render() {
-    const { superData, global, counter, countries, fechas } = this.state;
+    const { pais, superData, global, counter, countries, fechas } = this.state;
 
     return (
       <div className="App">
@@ -98,6 +145,9 @@ class App extends React.Component {
             path="/home"
             render={(props) => (
               <WorldMapDisplay
+                pais={pais}
+                sumDaysAndCities={this.sumDaysAndCities}
+                handleCountrySpecific={this.handleCountrySpecific}
                 handleChange={this.handleChange}
                 handleDragStop={this.handleDragStop}
                 fechas={fechas}

@@ -119,7 +119,7 @@
 }
 .Recovered h2 {
   text-align: center;
-  color: yellowgreen;
+  color: #7cad30;
   font-weight: bold;
   font-size: 38px;
 }
@@ -151,7 +151,7 @@
 .Confimed-list {
   overflow-y: auto;
   overflow-x: hidden;
-  height: 500px;
+  height: 40vh;
   border: 1px solid black;
 }
 
@@ -204,7 +204,7 @@
 }
 
 .Recovered-list li:hover {
-  border: 1px solid yellowgreen;
+  border: 1px solid #7cad30;
   padding: 5px;
   cursor: pointer;
   /* border-radius: 5px; */
@@ -260,11 +260,144 @@
 
 /*   Map Navbar       */
 
+.row {
+  background-color: #333333;
+}
+
 .map-navbar-container nav > div {
-  border: solid black 2px;
+  border: solid black 1px;
+  background-color: #333333;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+}
+
+/* Casos confirmados Nav */
+.map-navbar-container a {
+  width: 100%;
+}
+
+.confirmed-navlink {
+  text-align: center;
+  width: 100%;
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.confirmed-navlink div:nth-child(1) p {
+  font-size: 25px;
+  color: rgba(255, 50, 0, 0.6);
+  font-weight: bold;
+  text-align: center;
+  transition: all 500ms;
+}
+
+.confirmed-navlink div:nth-child(2) p {
+  text-align: left;
+  font-weight: bold;
+  color: rgba(255, 50, 0, 0.6);
+}
+
+.confirmed-navlink > div:nth-child(1) {
+  transition: all 300ms;
+}
+
+.confirmed-navlink:hover {
+  box-shadow: 0px 0px 3px gray inset;
+  background-color: rgba(119, 117, 117, 0.1);
+}
+
+.confirmed-navlink > div:nth-child(1) h4 {
+  font-weight: bold;
+}
+
+.confirmed-navlink > div:nth-child(1) h4 {
+  color: black;
+  text-align: center;
+}
+
+/* Casos Recuperados Nav */
+
+.recovered-navlink {
+  text-align: center;
+  width: 100%;
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recovered-navlink div:nth-child(1) p {
+  font-size: 25px;
+  color: #7cad30;
+  font-weight: bold;
+  text-align: center;
+  transition: all 500ms;
+}
+
+.recovered-navlink div:nth-child(2) p {
+  text-align: left;
+  font-weight: bold;
+  color: #7cad30;
+}
+
+.recovered-navlink > div:nth-child(1) {
+  transition: all 300ms;
+}
+
+.recovered-navlink:hover {
+  box-shadow: 0px 0px 3px gray inset;
+  background-color: rgba(119, 117, 117, 0.1);
+}
+
+.recovered-navlink > div:nth-child(1) h4 {
+  font-weight: bold;
+}
+
+.recovered-navlink > div:nth-child(1) h4 {
+  color: black;
+  text-align: center;
+}
+
+/* Casos Muertos Nav */
+.deaths-navlink {
+  text-align: center;
+  width: 100%;
+  display: flexbox;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deaths-navlink div:nth-child(1) p {
+  font-size: 25px;
+  color: gray;
+  font-weight: bold;
+  text-align: center;
+  transition: all 500ms;
+}
+
+.deaths-navlink div:nth-child(2) p {
+  text-align: left;
+  font-weight: bold;
+  color: gray;
+}
+
+.deaths-navlink > div:nth-child(1) {
+  transition: all 300ms;
+}
+
+.deaths-navlink:hover {
+  box-shadow: 0px 0px 3px gray inset;
+  background-color: rgba(119, 117, 117, 0.1);
+}
+
+.deaths-navlink > div:nth-child(1) h4 {
+  font-weight: bold;
+}
+
+.deaths-navlink > div:nth-child(1) h4 {
+  color: black;
+  text-align: center;
 }
 
 .map-navbar-container a {
@@ -292,26 +425,11 @@
 /*     WorldMap Component    */
 .loading-map-container {
   width: 90%;
-  height: 600px;
-}
-
-.marker-cluster-custom {
-  background: #9370db;
-  border: 3px solid #ededed;
-  border-radius: 50%;
-  color: #ededed;
-  height: 40px;
-  line-height: 37px;
-  text-align: center;
-  width: 40px;
+  height: 0hv;
 }
 
 .world-map-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row wrap;
-  border: solid black 2px;
+  border: solid black 1px;
   background-color: #333333;
 }
 
@@ -319,6 +437,7 @@
   width: 100%;
   height: 400px;
   border: black solid 1px;
+  background-color: #222222;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -379,10 +498,11 @@
 /* Lista  */
 
 .list-countries-container {
-  height: 500px;
+  height: 400px;
   overflow-x: hidden;
   overflow-y: scroll;
-  border: 2px solid black;
+  border: 1px solid black;
+  color: black;
 }
 
 .list-countries-container thead th {
@@ -437,30 +557,48 @@ td {
   box-shadow: none;
 }
 
+.list-countries-container tr td:nth-child(1) p {
+  color: black;
+}
+
 .list-countries-container tr td p {
   padding: 2px;
   margin: 0px;
   transition: all 300ms;
 }
 
+.list-countries-container tr p {
+  transition: all 300ms;
+}
+
 .list-countries-container tr:hover p {
-  transform: scale(0.95, 0.95);
+  transform: scale(1.05, 1.05);
 }
 
 .list-countries-container tr td:nth-child(2) {
-  width: 180px;
-  text-align: left;
-  margin-left: 5px;
+  color: black;
+  text-align: center;
+}
+
+.list-countries-container tr td:nth-child(2) h6 {
+  font-size: 18px;
+  margin: 0px;
+  transition: all 300ms;
+}
+
+.list-countries-container tr:hover td:nth-child(2) h6 {
+  transform: scale(1.05, 1.05);
 }
 
 .list-countries-container tbody td:nth-child(3) p {
   font-weight: bold;
-  color: red;
+  color: rgba(255, 50, 0, 0.8);
+  transition: all 300ms;
 }
 
 .list-countries-container tbody td:nth-child(4) p {
   font-weight: bold;
-  color: yellowgreen;
+  color: #7cad30;
 }
 
 .list-countries-container tbody td:nth-child(5) p {
@@ -490,4 +628,32 @@ td {
 
 .slider-contaier div:nth-child(2) h6 {
   margin-top: 5px;
+}
+
+/* Chart  */
+.chart-container {
+  border: 1px solid black;
+}
+
+.chart-container h5 {
+  text-align: center;
+  color: black;
+}
+
+.chartjs-size-monitor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

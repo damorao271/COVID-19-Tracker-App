@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { getDayOneCountry } from "../../services/getdata";
 import { Line } from "react-chartjs-2";
+import Loader from "react-loader-spinner";
 import _ from "lodash";
 
 class Chart extends Component {
@@ -15,53 +16,31 @@ class Chart extends Component {
     return dia;
   };
 
-  // arrange = (pais) => {
-  //   let country = [];
-  //   let j = 0;
-  //   for (let i = 0; i < pais.length - 1; i++) {
-  //     // Trim string or pasrse integer
-
-  //     if (pais[i].Date === pais[i + 1].Date) {
-  //       pais[i + 1] = {
-  //         Country: pais[i].Country,
-  //         Date: pais[i + 1].Date,
-  //         Confirmed: pais[i].Confirmed + pais[i + 1].Confirmed,
-  //         Deaths: pais[i].Deaths + pais[i + 1].Deaths,
-  //         Recovered: pais[i].Recovered + pais[i + 1].Recovered,
-  //       };
-  //     } else {
-  //       country[j] = {
-  //         Country: pais[i].Country,
-  //         Date: pais[i].Date,
-  //         Confirmed: pais[i].Confirmed,
-  //         Deaths: pais[i].Deaths,
-  //         Recovered: pais[i].Recovered,
-  //         Province: pais[i].Province,
-  //         City: pais[i].City,
-  //         sumado: true,
-  //         i: i,
-  //         j: j,
-  //       };
-  //       j = j + 1;
-  //     }
-  //   }
-  //   return country;
-  // };
-
   render() {
     const { pais, sumDaysAndCities } = this.props;
 
     const filter = _.uniqBy(pais, "Country");
 
     if (!pais) {
-      return null;
+      return (
+        <div className="spinner chart-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
+          <Loader
+            type="Oval"
+            // color="#00BFFF"
+            color="gray"
+            secondaryColor="red"
+            height="33%"
+            width="33%"
+          />
+        </div>
+      );
     }
 
     const filteredCountry = sumDaysAndCities(pais);
 
     return (
       <React.Fragment>
-        <div className=" col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
+        <div className="chart-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
           <h5>{filter.map((c) => c.Country)}</h5>
           <Line
             data={{
@@ -77,7 +56,7 @@ class Chart extends Component {
                 {
                   data: filteredCountry.map((data) => data.Recovered),
                   label: "Recovered",
-                  borderColor: "yellowgreen",
+                  borderColor: "#7CAD30",
                   backgroundColor: "rgba(155, 205, 52, 0.5)",
                   fill: true,
                 },

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PieChart from "./common/pieChart";
 import SubNavbar from "./subNavbar";
 import { Route, Switch } from "react-router-dom";
+
 import _ from "lodash";
 
 class Chart extends Component {

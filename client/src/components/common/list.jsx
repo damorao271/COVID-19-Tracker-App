@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CountUp from "react-countup";
-
+import Loader from "react-loader-spinner";
 class List extends Component {
   render() {
     const {
@@ -16,171 +16,16 @@ class List extends Component {
       return (
         <div
           // style={{ overflow: "auto" }}
-          className="list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6"
+          className="spinner list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6"
         >
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <h5>Position</h5>
-                </th>
-                <th>
-                  <h5>Country</h5>
-                </th>
-                <th>
-                  <h5>Total Confirmed</h5>
-                </th>
-                <th>
-                  <h5>Total Recovered</h5>
-                </th>
-                <th>
-                  <h5>Total Deaths</h5>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-              <tr>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-                <td>...</td>
-              </tr>
-            </tbody>
-          </table>
+          <Loader
+            type="Oval"
+            // color="#00BFFF"
+            color="gray"
+            secondaryColor="red"
+            height="33%"
+            width="33%"
+          />
         </div>
       );
     }
@@ -214,7 +59,7 @@ class List extends Component {
                   <p>{counter++}</p>
                 </td>
                 <td>
-                  <p>{c.Country}</p>
+                  <h6>{c.Country}</h6>
                 </td>
                 <td>
                   <p>

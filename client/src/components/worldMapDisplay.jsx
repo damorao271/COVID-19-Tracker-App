@@ -140,10 +140,8 @@ class WorldMapDisplay extends Component {
               height="33%"
               width="33%"
             />
-            {/* <p> Loading Map ...</p>
-            <p> This might take a minute</p> */}
           </div>
-          <div className="row">
+          <div className="second-half row">
             <List
               handleCountrySpecific={handleCountrySpecific}
               sortByConfirmed={sortByConfirmed}
@@ -158,7 +156,7 @@ class WorldMapDisplay extends Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         <MapNavbar global={global} />
 
         <Switch>
@@ -186,7 +184,7 @@ class WorldMapDisplay extends Component {
                 fechas={fechas}
                 data={recoveredCases}
                 type="Reovered"
-                color="greenyellow"
+                color="#7CAD30"
                 counter={counter}
                 handleCountrySpecific={handleCountrySpecific}
                 handleChange={handleChange}
@@ -237,7 +235,7 @@ class WorldMapDisplay extends Component {
           />
           <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

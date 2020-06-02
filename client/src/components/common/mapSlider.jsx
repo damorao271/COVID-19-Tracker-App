@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Slider from "@material-ui/core/Slider";
 import { withStyles } from "@material-ui/core/styles";
+import Loader from "react-loader-spinner";
 
 class MapSlider extends Component {
   render() {
@@ -12,8 +13,6 @@ class MapSlider extends Component {
       month: "numeric",
       year: "numeric",
     });
-
-    console.log("Longitud de las fechas: ", fechas.length);
 
     const PrettoSlider = withStyles({
       root: {
@@ -60,25 +59,36 @@ class MapSlider extends Component {
         label: "Day: " + 0,
       },
       {
-        value: (datesLength - 1) * 0.25,
-        label: "Day: " + (datesLength - 1) * 0.25,
+        value: Math.round((datesLength - 1) * 0.25),
+        label: "Day: " + Math.round((datesLength - 1) * 0.25),
       },
       {
-        value: (datesLength - 1) * 0.5,
-        label: "Day: " + (datesLength - 1) * 0.5,
+        value: Math.round((datesLength - 1) * 0.5),
+        label: "Day: " + Math.round((datesLength - 1) * 0.5),
       },
       {
-        value: (datesLength - 1) * 0.75,
-        label: "Day: " + (datesLength - 1) * 0.75,
+        value: Math.round((datesLength - 1) * 0.75),
+        label: "Day: " + Math.round((datesLength - 1) * 0.75),
       },
       {
-        value: datesLength - 1,
-        label: "Day: " + (datesLength - 1),
+        value: Math.round(datesLength - 1),
+        label: "Day: " + Math.round(datesLength - 1),
       },
     ];
 
     if (fechas.length < 10) {
-      return <h6>Loading...</h6>;
+      return (
+        <div className="slider-contaier row">
+          <Loader
+            type="Oval"
+            // color="#00BFFF"
+            color="gray"
+            secondaryColor="red"
+            height="33%"
+            width="33%"
+          />
+        </div>
+      );
     }
 
     console.log("Color: ", color);

@@ -13,10 +13,10 @@ class MapNavbar extends Component {
           <div className="col-sm-12 col-md-12 col-lg-3 col-xl-3">
             <img className="logo" src={coronaImage} alt="COVID-19" />
           </div>
-          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-            <NavLink to="/home/confirmed">
-              <div className="confirmed-navlink row">
-                <div className="col-9">
+          <div className="col-4 col-lg-3 col-xl-3">
+            <NavLink to="/confirmed">
+              <div className="confirmed-navlink ">
+                <div>
                   <h4>Confirmed Cases</h4>
                   <p>
                     <CountUp
@@ -27,7 +27,7 @@ class MapNavbar extends Component {
                     />
                   </p>
                 </div>
-                <div className="col-3">
+                <div>
                   <p>
                     +
                     <CountUp
@@ -41,10 +41,10 @@ class MapNavbar extends Component {
               </div>
             </NavLink>
           </div>
-          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-            <NavLink to="/home/recovered">
-              <div className="recovered-navlink row">
-                <div className="col-9">
+          <div className="col-4 col-lg-3 col-xl-3">
+            <NavLink to="/recovered">
+              <div className="recovered-navlink ">
+                <div>
                   <h4>Recovered Cases</h4>
                   <p>
                     <CountUp
@@ -55,7 +55,7 @@ class MapNavbar extends Component {
                     />
                   </p>
                 </div>
-                <div className="col-3">
+                <div>
                   <p>
                     +
                     <CountUp
@@ -69,10 +69,10 @@ class MapNavbar extends Component {
               </div>
             </NavLink>
           </div>
-          <div className="col-xs-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-            <NavLink to="/home/deaths">
-              <div className="deaths-navlink row">
-                <div className="col-9">
+          <div className="col-4 col-lg-3 col-xl-3">
+            <NavLink to="/deaths">
+              <div className="deaths-navlink ">
+                <div>
                   <h4>Death Cases</h4>
                   <p>
                     <CountUp
@@ -83,7 +83,7 @@ class MapNavbar extends Component {
                     />
                   </p>
                 </div>
-                <div className="col-3">
+                <div>
                   <p>
                     +
                     <CountUp

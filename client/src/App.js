@@ -142,7 +142,7 @@ class App extends React.Component {
             )}
           />
           <Route
-            path="/home"
+            path="/"
             render={(props) => (
               <WorldMapDisplay
                 pais={pais}

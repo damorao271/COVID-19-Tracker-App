@@ -288,11 +288,12 @@
 }
 
 .confirmed-navlink {
-  text-align: center;
   width: 100%;
+  text-align: center;
   display: flexbox;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
 }
 
 .confirmed-navlink div:nth-child(1) p {
@@ -304,7 +305,7 @@
 }
 
 .confirmed-navlink div:nth-child(2) p {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   color: rgba(255, 50, 0, 0.6);
 }
@@ -330,11 +331,12 @@
 /* Casos Recuperados Nav */
 
 .recovered-navlink {
-  text-align: center;
   width: 100%;
+  text-align: center;
   display: flexbox;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
 }
 
 .recovered-navlink div:nth-child(1) p {
@@ -346,7 +348,7 @@
 }
 
 .recovered-navlink div:nth-child(2) p {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   color: #7cad30;
 }
@@ -371,11 +373,12 @@
 
 /* Casos Muertos Nav */
 .deaths-navlink {
-  text-align: center;
   width: 100%;
+  text-align: center;
   display: flexbox;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  flex-flow: row wrap;
 }
 
 .deaths-navlink div:nth-child(1) p {
@@ -387,7 +390,7 @@
 }
 
 .deaths-navlink div:nth-child(2) p {
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   color: gray;
 }
@@ -706,4 +709,63 @@ td {
 .day-display div:nth-child(2) h6 {
   margin: 0px;
   font-size: 10px;
+}
+
+@media only screen and (max-width: 800px) {
+  .day-display div h6 {
+    font-size: 30px;
+  }
+
+  .day-display h5 {
+    margin: 0px;
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 799px) {
+  .day-display div h6 {
+    font-size: 20px;
+  }
+
+  .day-display h5 {
+    margin: 0px;
+    font-size: 20px;
+  }
+
+  .confirmed-navlink > div:nth-child(1) h4 {
+    font-size: 20px;
+  }
+
+  .confirmed-navlink > div:nth-child(1) p {
+    font-size: 20px;
+  }
+
+  .recovered-navlink > div:nth-child(1) h4 {
+    font-size: 20px;
+  }
+  .recovered-navlink > div:nth-child(1) p {
+    font-size: 20px;
+  }
+
+  .deaths-navlink > div:nth-child(1) h4 {
+    font-size: 20px;
+  }
+
+  .deaths-navlink > div:nth-child(1) p {
+    font-size: 20px;
+  }
+
+  .list-countries-container th h5 {
+    font-size: 13px;
+  }
+
+  .list-countries-container tbody {
+    font-size: 13px;
+  }
+
+  .list-countries-container tr td:nth-child(2) h6 {
+    font-size: 13px;
+  }
+
+  /* .list-countries-container tbody td:nth-child(4) p { */
 }

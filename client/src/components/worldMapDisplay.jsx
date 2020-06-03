@@ -152,6 +152,7 @@ class WorldMapDisplay extends Component {
             />
           </div>
           <div className="second-half row">
+            <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
             <List
               handleCountrySpecific={handleCountrySpecific}
               sortByConfirmed={sortByConfirmed}
@@ -159,7 +160,6 @@ class WorldMapDisplay extends Component {
               sortByDeaths={sortByDeaths}
               countries={countries}
             />
-            <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
           </div>
         </React.Fragment>
       );
@@ -171,7 +171,7 @@ class WorldMapDisplay extends Component {
 
         <Switch>
           <Route
-            path="/home/confirmed"
+            path="/confirmed"
             render={(props) => (
               <WorldMap
                 fechas={fechas}
@@ -188,7 +188,7 @@ class WorldMapDisplay extends Component {
           />
 
           <Route
-            path="/home/recovered"
+            path="/recovered"
             render={(props) => (
               <WorldMap
                 fechas={fechas}
@@ -204,7 +204,7 @@ class WorldMapDisplay extends Component {
           />
 
           <Route
-            path="/home/deaths"
+            path="/deaths"
             render={(props) => (
               <WorldMap
                 fechas={fechas}
@@ -220,7 +220,7 @@ class WorldMapDisplay extends Component {
           />
 
           <Route
-            path="/home/"
+            path="/"
             render={(props) => (
               <WorldMap
                 fechas={fechas}
@@ -235,7 +235,8 @@ class WorldMapDisplay extends Component {
             )}
           />
         </Switch>
-        <div className="row">
+        <div id="second" className="row">
+          <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
           <List
             handleCountrySpecific={handleCountrySpecific}
             sortByConfirmed={sortByConfirmed}
@@ -243,7 +244,6 @@ class WorldMapDisplay extends Component {
             sortByDeaths={sortByDeaths}
             countries={countries}
           />
-          <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
         </div>
       </React.Fragment>
     );

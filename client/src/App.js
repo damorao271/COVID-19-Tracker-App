@@ -124,6 +124,7 @@ class App extends React.Component {
         j = j + 1;
       }
     }
+    console.log("Algo esta cambiando: ", pais);
     return country;
   };
 
@@ -132,7 +133,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        {/* <Header /> */}
         <Switch>
           <Route
             path="/charts"

@@ -11,13 +11,9 @@ class List extends Component {
       sortByDeaths,
     } = this.props;
     var counter = 1;
-    console.log("List Props: ", this.props);
     if (!countries) {
       return (
-        <div
-          // style={{ overflow: "auto" }}
-          className="spinner list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6"
-        >
+        <div className="spinner list-countries-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
           <Loader
             type="Oval"
             // color="#00BFFF"

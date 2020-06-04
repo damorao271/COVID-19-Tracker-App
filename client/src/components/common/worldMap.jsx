@@ -4,15 +4,10 @@ import CountUp from "react-countup";
 import Slider from "./mapSlider";
 
 class WorldMap extends Component {
-  handleMarker = (country) => {
-    console.log(country);
-  };
-
   render() {
     const {
       fechas,
       data,
-      type,
       color,
       counter,
       handleCountrySpecific,
@@ -40,8 +35,10 @@ class WorldMap extends Component {
           <Map center={[10, 0]} zoom={1.5}>
             <TileLayer
               // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              // attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+              // attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
             />
 
             {data.map((a) => (

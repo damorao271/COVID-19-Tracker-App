@@ -6,7 +6,6 @@ import {
   getDayOneSpecific,
 } from "./services/getdata";
 import WorldMapDisplay from "./components/worldMapDisplay";
-import Header from "./components/header";
 import Info from "./components/info";
 import { Route, Switch } from "react-router-dom";
 import _ from "lodash";

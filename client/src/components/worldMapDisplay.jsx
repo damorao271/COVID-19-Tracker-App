@@ -105,8 +105,6 @@ class WorldMapDisplay extends Component {
       countries,
     } = this.props;
 
-    console.log("Super data: ", superData);
-
     const confirmedCases = this.dataConfirmed(superData, counter);
     const recoveredCases = this.dataRecovered(superData, counter);
     const deathCases = this.dataDeaths(superData, counter);
@@ -140,6 +138,10 @@ class WorldMapDisplay extends Component {
               height="33%"
               width="33%"
             />
+          </div>
+          <div className="loading-message">
+            <h5>Loading map ...</h5>
+            <h6>This might take a minute</h6>
           </div>
           <div className="slider-contaier spinner row">
             <Loader

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { getDayOneCountry } from "../../services/getdata";
 import { Line } from "react-chartjs-2";
 import Loader from "react-loader-spinner";
 import _ from "lodash";

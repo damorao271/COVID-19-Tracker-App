@@ -5,3 +5,5 @@ This app displays real time charts and data provided by Johns Hopkins University
 Uses leaflet map package 
 Map Styles List
 http://leaflet-extras.github.io/leaflet-providers/preview/index.html
+
+![](https://github.com/damorao271/COVID-19-Tracker-App/issues/2#issue-631115778)

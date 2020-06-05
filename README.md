@@ -12,7 +12,7 @@ This app displays data by country and regions in a world map since day one. It c
 
 <img src="https://user-images.githubusercontent.com/58126884/83909501-e75e2200-a736-11ea-95c4-eac8c52a1268.png" width=100%/>
 For more specific information the user can click on each region and select the country displayed.
-<p align="center
+<p align="center">
   <img src="https://user-images.githubusercontent.com/58126884/83911602-8d5f5b80-a73a-11ea-84e1-479639a9953d.png" width=80%/>
 </p>
 

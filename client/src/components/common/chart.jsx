@@ -16,9 +16,9 @@ class Chart extends Component {
   };
 
   render() {
-    const { pais, sumDaysAndCities } = this.props;
+    const { pais } = this.props;
 
-    const filter = _.uniqBy(pais, "Country");
+    // const filter = ;
 
     if (!pais) {
       return (
@@ -35,32 +35,32 @@ class Chart extends Component {
       );
     }
 
-    const filteredCountry = sumDaysAndCities(pais);
+    // const filteredCountry = ;
 
     return (
       <React.Fragment>
         <div className="chart-container col-sm-12 col-md-12 col-xs-12 col-md-6 col-lg-6">
-          <h5>{filter.map((c) => c.Country)}</h5>
+          <h5>{_.uniqBy(pais, "Country").map((c) => c.Country)}</h5>
           <Line
             data={{
-              labels: filteredCountry.map(({ Date }) => this.getDate(Date)),
+              labels: pais.map(({ Date }) => this.getDate(Date)),
               datasets: [
                 {
-                  data: filteredCountry.map((data) => data.Confirmed),
+                  data: pais.map((data) => data.Confirmed),
                   label: "Infected",
                   borderColor: "red",
                   backgroundColor: "rgba(255, 0, 0, 0.5)",
                   fill: true,
                 },
                 {
-                  data: filteredCountry.map((data) => data.Recovered),
+                  data: pais.map((data) => data.Recovered),
                   label: "Recovered",
                   borderColor: "#7CAD30",
                   backgroundColor: "rgba(155, 205, 52, 0.5)",
                   fill: true,
                 },
                 {
-                  data: filteredCountry.map((data) => data.Deaths),
+                  data: pais.map((data) => data.Deaths),
                   label: "Deaths",
                   borderColor: "rgba(119, 119, 118, 0.5)",
                   backgroundColor: "rgba(119, 119, 118, 0.5)",

@@ -89,6 +89,7 @@ class App extends React.Component {
   // Actualiza el pais del Props
   handleCountrySpecific = async (country) => {
     let pais = await getDayOneSpecific(country);
+    pais = this.sumDaysAndCities(pais);
     this.setState({ pais });
   };
 
@@ -124,7 +125,6 @@ class App extends React.Component {
         j = j + 1;
       }
     }
-    console.log("Algo esta cambiando: ", pais);
     return country;
   };
 
@@ -145,7 +145,6 @@ class App extends React.Component {
             render={(props) => (
               <WorldMapDisplay
                 pais={pais}
-                sumDaysAndCities={this.sumDaysAndCities}
                 handleCountrySpecific={this.handleCountrySpecific}
                 handleChange={this.handleChange}
                 handleDragStop={this.handleDragStop}

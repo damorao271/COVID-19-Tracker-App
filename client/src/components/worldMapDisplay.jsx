@@ -5,6 +5,7 @@ import List from "./common/list";
 import Chart from "./common/chart";
 import Loader from "react-loader-spinner";
 import { Route, Switch } from "react-router-dom";
+import CountUp from "react-countup";
 import _ from "lodash";
 
 class WorldMapDisplay extends Component {
@@ -95,7 +96,6 @@ class WorldMapDisplay extends Component {
       global,
       superData,
       counter,
-      sumDaysAndCities,
       handleCountrySpecific,
       sortByConfirmed,
       sortByRecovered,
@@ -140,7 +140,10 @@ class WorldMapDisplay extends Component {
             />
           </div>
           <div className="loading-message">
-            <h5>Loading map ...</h5>
+            <h5>
+              Loading <CountUp start={0} end={186} duration={360} /> countries
+              in the map
+            </h5>
             <h6>This might take a minute</h6>
           </div>
           <div className="slider-contaier spinner row">
@@ -154,7 +157,7 @@ class WorldMapDisplay extends Component {
             />
           </div>
           <div className="second-half row">
-            <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
+            <Chart pais={pais} />
             <List
               handleCountrySpecific={handleCountrySpecific}
               sortByConfirmed={sortByConfirmed}
@@ -238,7 +241,7 @@ class WorldMapDisplay extends Component {
           />
         </Switch>
         <div id="second" className="row">
-          <Chart sumDaysAndCities={sumDaysAndCities} pais={pais} />
+          <Chart pais={pais} />
           <List
             handleCountrySpecific={handleCountrySpecific}
             sortByConfirmed={sortByConfirmed}

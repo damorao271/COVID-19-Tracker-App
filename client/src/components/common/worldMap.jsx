@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Map, Popup, TileLayer, CircleMarker } from "react-leaflet";
 import CountUp from "react-countup";
+import L from "leaflet";
 import Slider from "./mapSlider";
 
 class WorldMap extends Component {
@@ -29,10 +30,21 @@ class WorldMap extends Component {
       color: color,
     };
 
+    var southWest = L.latLng(-63.548552, 190.942647),
+      northEast = L.latLng(78.206563, -178.19923),
+      bounds = L.latLngBounds(southWest, northEast);
+    // maxBounds: bounds
     return (
       <React.Fragment>
         <div className="world-map-container">
-          <Map center={[10, 0]} zoom={1.5}>
+          <Map
+            center={[10, 0]}
+            zoom={1.5}
+            // maxZoom={3}
+            minZoom={2}
+            maxBounds={bounds}
+            maxBoundsViscosity={1.0}
+          >
             <TileLayer
               // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               // attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

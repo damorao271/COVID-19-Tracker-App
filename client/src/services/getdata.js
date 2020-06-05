@@ -18,6 +18,7 @@ export const getDailyData = async () => {
     const { data } = await axios.get(urlSummary);
     return data;
   } catch (error) {
+    alert("Connection to the sever lost !!! Refresh the page");
     return error;
   }
 };

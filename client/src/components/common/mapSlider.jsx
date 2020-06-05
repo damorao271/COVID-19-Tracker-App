@@ -103,7 +103,7 @@ class MapSlider extends Component {
                 step={1}
                 marks={marks}
                 min={0}
-                max={fechas.length}
+                max={fechas.length - 1}
                 value={counter}
                 onDragStop={this.props.handleDragStop}
                 onChange={this.props.handleChange}
